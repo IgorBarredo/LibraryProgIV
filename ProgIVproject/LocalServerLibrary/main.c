@@ -58,7 +58,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-			"#          Título          #"
+			"#          Tï¿½tulo          #"
 	);
 
 }
@@ -67,7 +67,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-			"#        Categoría         #"
+			"#        Categorï¿½a         #"
 	);
 
 }
@@ -593,13 +593,13 @@ void windowSelector(int n) {
 	    default:
 	      // default statements
 	      printf(
-	    		  "############################" +
-			      "#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
-				  "#   INSERTE VALOR VÁLIDO   #" +
-				  "#//////////////////////////#" +
-				  "############################"
+	    		  "############################\n" 
+			      "#//////////////////////////#\n" 
+				  "#   INSERTE VALOR VALIDO   #\n" 
+				  "#//////////////////////////#\n" 
+				  "############################\n"
 	      );
-	      sleep(int 3);
+	      //sleep(int 3);
 	      mainWindow();
 	}
 
@@ -611,23 +611,23 @@ void mainWindowMenu() {
 	int input;
 
 	printf(
-			"############################" +
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
-			"#     	   MAIN MENU        #" +
-			"#//////////////////////////#" +
-			"############################" +
-			"#                          #" +
-			"#  1. Leer                 #" +
-			"#  2. Subir                #" +
-			"#  3. Modificar            #" +
-			"#  4. Registrar Autor      #" +
-			"#  5. Registrar Editorial  #" +
-			"#  6. Registrar Categoría  #" +
-			"#  7. Salir                #" +
-			"#                          #" +
-			"############################" +
-			"#      Inserte numero      #" +
-			"############################"
+			"############################\n" 
+			"#//////////////////////////#\n" 
+			"#     	   MAIN MENU        #\n" 
+			"#//////////////////////////#\n" 
+			"############################\n" 
+			"#                          #\n" 
+			"#  1. Leer                 #\n" 
+			"#  2. Subir                #\n" 
+			"#  3. Modificar            #\n" 
+			"#  4. Registrar Autor      #\n" 
+			"#  5. Registrar Editorial  #\n" 
+			"#  6. Registrar Categoria  #\n" 
+			"#  7. Salir                #\n" 
+			"#                          #\n" 
+			"############################\n" 
+			"#      Inserte numero      #\n" 
+			"############################\n"
 	);
 	FFLUSH(STDOUT);
 	scanf("%d", &input);
