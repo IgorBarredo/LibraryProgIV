@@ -27,7 +27,7 @@ void fecha() {
 
 }
 
-//dnnd
+
 void contenido() {
 
 	printf(
@@ -58,7 +58,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-			"#          T�tulo          #"
+			"#          Título          #"
 	);
 
 }
@@ -67,7 +67,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-			"#        Categor�a         #"
+			"#        Categoría         #"
 	);
 
 }
@@ -94,8 +94,8 @@ void endMenuShorter() {
 void registrar() {
 
 	printf(
-			"############################" +
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
+			"############################\n"
+			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
 			"#         Registrar        #"
 	);
 
@@ -105,8 +105,8 @@ void registrar() {
 void subir() {
 
 	printf(
-			"############################" +
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
+			"############################\n"
+			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
 			"#           Subir          #"
 	);
 
@@ -116,8 +116,8 @@ void subir() {
 void modificar() {
 
 	printf(
-			"############################" +
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
+			"############################\n"
+			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
 			"#         Modificar        #"
 	);
 
@@ -127,8 +127,8 @@ void modificar() {
 void leer() {
 
 	printf(
-			"############################" +
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#" +
+			"############################\n"
+			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
 			"#           Leer           #"
 	);
 
@@ -138,7 +138,7 @@ void leer() {
 void buscarPor() {
 
 	printf(
-			"############################" +
+			"############################\n"
 			"#        Buscar Por        #"
 	);
 
@@ -148,7 +148,7 @@ void buscarPor() {
 void introducir() {
 
 	printf(
-			"############################" +
+			"############################\n"
 			"#        Introducir        #"
 	);
 
@@ -159,8 +159,8 @@ void introducir() {
 void insertarNombre() {
 
 	printf(
-			"############################" +
-			"# Inserte nombre completo  #" +
+			"############################\n"
+			"# Inserte nombre completo  #\n"
 			"############################"
 	);
 
@@ -170,8 +170,8 @@ void insertarNombre() {
 void insertarTexto() {
 
 	printf(
-			"############################" +
-			"#       Inserte texto      #" +
+			"############################\n"
+			"#       Inserte texto      #\n"
 			"############################"
 	);
 
@@ -181,9 +181,9 @@ void insertarTexto() {
 void insertarFechaNacimiento() {
 
 	printf(
-			"############################" +
-			"#      Inserte fecha       #" +
-			"#      de nacimiento       #" +
+			"############################\n"
+			"#      Inserte fecha       #\n"
+			"#      de nacimiento       #\n"
 			"############################"
 	);
 
@@ -193,9 +193,9 @@ void insertarFechaNacimiento() {
 void insertarLugarNacimiento() {
 
 	printf(
-			"############################" +
-			"# Inserte nombre completo  #" +
-			"# del lugar de nacimiento  #" +
+			"############################\n"
+			"# Inserte nombre completo  #\n"
+			"# del lugar de nacimiento  #\n"
 			"############################"
 	);
 
