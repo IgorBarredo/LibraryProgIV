@@ -13,7 +13,7 @@
 void autor() {
 
 	printf(
-			"#          Autor           #"
+			"#          Autor           #\n"
 	);
 
 }
@@ -22,7 +22,7 @@ void autor() {
 void fecha() {
 
 	printf(
-			"#          Fecha           #"
+			"#          Fecha           #\n"
 	);
 
 }
@@ -31,7 +31,7 @@ void fecha() {
 void contenido() {
 
 	printf(
-			"#        Contenido         #"
+			"#        Contenido         #\n"
 	);
 
 }
@@ -40,7 +40,7 @@ void contenido() {
 void libro() {
 
 	printf(
-			"#          Libro           #"
+			"#          Libro           #\n"
 	);
 
 }
@@ -49,7 +49,7 @@ void libro() {
 void editorial() {
 
 	printf(
-			"#        Editorial         #"
+			"#        Editorial         #\n"
 	);
 
 }
@@ -58,7 +58,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-			"#          Título          #"
+			"#          Título          #\n"
 	);
 
 }
@@ -67,7 +67,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-			"#        Categoría         #"
+			"#        Categoría         #\n"
 	);
 
 }
@@ -76,7 +76,7 @@ void categoria() {
 void endMenu() {
 
 	printf(
-			"#//////////////////////////#"
+			"#--------------------------#\n"
 	);
 
 }
@@ -85,7 +85,7 @@ void endMenu() {
 void endMenuShorter() {
 
 	printf(
-			"############################"
+			"############################\n"
 	);
 
 }
@@ -95,8 +95,8 @@ void registrar() {
 
 	printf(
 			"############################\n"
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
-			"#         Registrar        #"
+			"#--------------------------#\n"
+			"#         Registrar        #\n"
 	);
 
 }
@@ -106,8 +106,8 @@ void subir() {
 
 	printf(
 			"############################\n"
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
-			"#           Subir          #"
+			"#--------------------------#\n"
+			"#           Subir          #\n"
 	);
 
 }
@@ -117,8 +117,8 @@ void modificar() {
 
 	printf(
 			"############################\n"
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
-			"#         Modificar        #"
+			"#--------------------------#\n"
+			"#         Modificar        #\n"
 	);
 
 }
@@ -128,8 +128,8 @@ void leer() {
 
 	printf(
 			"############################\n"
-			"#\\\\\\\\\\\\\\\\\\\\\\\\\\#\n"
-			"#           Leer           #"
+			"#--------------------------#\n"
+			"#           Leer           #\n"
 	);
 
 }
@@ -139,7 +139,7 @@ void buscarPor() {
 
 	printf(
 			"############################\n"
-			"#        Buscar Por        #"
+			"#        Buscar Por        #\n"
 	);
 
 }
@@ -149,7 +149,7 @@ void introducir() {
 
 	printf(
 			"############################\n"
-			"#        Introducir        #"
+			"#        Introducir        #\n"
 	);
 
 }
@@ -161,7 +161,7 @@ void insertarNombre() {
 	printf(
 			"############################\n"
 			"# Inserte nombre completo  #\n"
-			"############################"
+			"############################\n"
 	);
 
 }
@@ -172,7 +172,7 @@ void insertarTexto() {
 	printf(
 			"############################\n"
 			"#       Inserte texto      #\n"
-			"############################"
+			"############################\n"
 	);
 
 }
@@ -184,7 +184,7 @@ void insertarFechaNacimiento() {
 			"############################\n"
 			"#      Inserte fecha       #\n"
 			"#      de nacimiento       #\n"
-			"############################"
+			"############################\n"
 	);
 
 }
@@ -196,7 +196,7 @@ void insertarLugarNacimiento() {
 			"############################\n"
 			"# Inserte nombre completo  #\n"
 			"# del lugar de nacimiento  #\n"
-			"############################"
+			"############################\n"
 	);
 
 }
@@ -600,6 +600,7 @@ void windowSelector(int n) {
 				  "############################\n"
 	      );
 	      sleep(3);
+		  system("cls");
 	}
 
 }
@@ -630,6 +631,7 @@ int mainWindowMenu() {
 	);
 	//FFLUSH(stdout);
 	scanf("%d", &input);
+	system("cls");
 	return input;
 
 }
