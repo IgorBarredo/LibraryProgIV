@@ -559,6 +559,48 @@ void modificarMenu() {
 }
 
 
+int mainWindowMenu() {
+
+	int input;
+
+	printf(
+			"############################\n" 
+			"#//////////////////////////#\n" 
+			"#     	   MAIN MENU        #\n" 
+			"#//////////////////////////#\n" 
+			"############################\n" 
+			"#                          #\n" 
+			"#  1. Leer                 #\n" 
+			"#  2. Subir                #\n" 
+			"#  3. Modificar            #\n" 
+			"#  4. Registrar Autor      #\n" 
+			"#  5. Registrar Editorial  #\n" 
+			"#  6. Registrar Categoria  #\n" 
+			"#  7. Salir                #\n" 
+			"#                          #\n" 
+			"############################\n" 
+			"#      Inserte numero      #\n" 
+			"############################\n"
+	);
+
+	//FFLUSH(stdout);
+
+	char cadena[100]; // Declarar una cadena de caracteres
+
+	scanf("%d", &cadena);
+
+    if (cadena[0] != '\0') { // Verificar si la cadena no está vacía
+
+        input = cadena[0]; // Asignar el primer carácter a la variable primer_caracter
+
+    }
+
+	system("cls");
+	return input;
+
+}
+
+
 void windowSelector(int n) {
 
 	switch (n) {
@@ -603,37 +645,6 @@ void windowSelector(int n) {
 		  system("cls");
 		  break;
 	}
-
-}
-
-
-int mainWindowMenu() {
-
-	int input;
-
-	printf(
-			"############################\n" 
-			"#//////////////////////////#\n" 
-			"#     	   MAIN MENU        #\n" 
-			"#//////////////////////////#\n" 
-			"############################\n" 
-			"#                          #\n" 
-			"#  1. Leer                 #\n" 
-			"#  2. Subir                #\n" 
-			"#  3. Modificar            #\n" 
-			"#  4. Registrar Autor      #\n" 
-			"#  5. Registrar Editorial  #\n" 
-			"#  6. Registrar Categoria  #\n" 
-			"#  7. Salir                #\n" 
-			"#                          #\n" 
-			"############################\n" 
-			"#      Inserte numero      #\n" 
-			"############################\n"
-	);
-	//FFLUSH(stdout);
-	scanf("%d", &input);
-	system("cls");
-	return input;
 
 }
 
