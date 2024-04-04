@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "main.h"
 #include "strings/strings.h"
+#define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
@@ -13,7 +14,7 @@
 void autor() {
 
 	printf(
-			"#          Autor           #\n"
+		"#          Autor           #\n"
 	);
 
 }
@@ -22,7 +23,7 @@ void autor() {
 void fecha() {
 
 	printf(
-			"#          Fecha           #\n"
+		"#          Fecha           #\n"
 	);
 
 }
@@ -31,7 +32,7 @@ void fecha() {
 void contenido() {
 
 	printf(
-			"#        Contenido         #\n"
+		"#        Contenido         #\n"
 	);
 
 }
@@ -40,7 +41,7 @@ void contenido() {
 void libro() {
 
 	printf(
-			"#          Libro           #\n"
+		"#          Libro           #\n"
 	);
 
 }
@@ -49,7 +50,7 @@ void libro() {
 void editorial() {
 
 	printf(
-			"#        Editorial         #\n"
+		"#        Editorial         #\n"
 	);
 
 }
@@ -58,7 +59,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-			"#          Título          #\n"
+		"#          Título          #\n"
 	);
 
 }
@@ -67,7 +68,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-			"#        Categoría         #\n"
+		"#        Categoría         #\n"
 	);
 
 }
@@ -76,7 +77,7 @@ void categoria() {
 void endMenu() {
 
 	printf(
-			"#--------------------------#\n"
+		"#--------------------------#\n"
 	);
 
 }
@@ -85,7 +86,7 @@ void endMenu() {
 void endMenuShorter() {
 
 	printf(
-			"############################\n"
+		"############################\n"
 	);
 
 }
@@ -94,9 +95,9 @@ void endMenuShorter() {
 void registrar() {
 
 	printf(
-			"############################\n"
-			"#--------------------------#\n"
-			"#         Registrar        #\n"
+		"############################\n"
+		"#--------------------------#\n"
+		"#         Registrar        #\n"
 	);
 
 }
@@ -105,9 +106,9 @@ void registrar() {
 void subir() {
 
 	printf(
-			"############################\n"
-			"#--------------------------#\n"
-			"#           Subir          #\n"
+		"############################\n"
+		"#--------------------------#\n"
+		"#           Subir          #\n"
 	);
 
 }
@@ -116,9 +117,9 @@ void subir() {
 void modificar() {
 
 	printf(
-			"############################\n"
-			"#--------------------------#\n"
-			"#         Modificar        #\n"
+		"############################\n"
+		"#--------------------------#\n"
+		"#         Modificar        #\n"
 	);
 
 }
@@ -127,9 +128,9 @@ void modificar() {
 void leer() {
 
 	printf(
-			"############################\n"
-			"#--------------------------#\n"
-			"#           Leer           #\n"
+		"############################\n"
+		"#--------------------------#\n"
+		"#           Leer           #\n"
 	);
 
 }
@@ -138,8 +139,8 @@ void leer() {
 void buscarPor() {
 
 	printf(
-			"############################\n"
-			"#        Buscar Por        #\n"
+		"############################\n"
+		"#        Buscar Por        #\n"
 	);
 
 }
@@ -148,8 +149,8 @@ void buscarPor() {
 void introducir() {
 
 	printf(
-			"############################\n"
-			"#        Introducir        #\n"
+		"############################\n"
+		"#        Introducir        #\n"
 	);
 
 }
@@ -159,9 +160,9 @@ void introducir() {
 void insertarNombre() {
 
 	printf(
-			"############################\n"
-			"# Inserte nombre completo  #\n"
-			"############################\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"############################\n"
 	);
 
 }
@@ -170,9 +171,9 @@ void insertarNombre() {
 void insertarTexto() {
 
 	printf(
-			"############################\n"
-			"#       Inserte texto      #\n"
-			"############################\n"
+		"############################\n"
+		"#       Inserte texto      #\n"
+		"############################\n"
 	);
 
 }
@@ -181,10 +182,10 @@ void insertarTexto() {
 void insertarFechaNacimiento() {
 
 	printf(
-			"############################\n"
-			"#      Inserte fecha       #\n"
-			"#      de nacimiento       #\n"
-			"############################\n"
+		"############################\n"
+		"#      Inserte fecha       #\n"
+		"#      de nacimiento       #\n"
+		"############################\n"
 	);
 
 }
@@ -193,10 +194,10 @@ void insertarFechaNacimiento() {
 void insertarLugarNacimiento() {
 
 	printf(
-			"############################\n"
-			"# Inserte nombre completo  #\n"
-			"# del lugar de nacimiento  #\n"
-			"############################\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"# del lugar de nacimiento  #\n"
+		"############################\n"
 	);
 
 }
@@ -564,23 +565,23 @@ int mainWindowMenu() {
 	int input;
 
 	printf(
-			"############################\n" 
-			"#//////////////////////////#\n" 
-			"#     	   MAIN MENU        #\n" 
-			"#//////////////////////////#\n" 
-			"############################\n" 
-			"#                          #\n" 
-			"#  1. Leer                 #\n" 
-			"#  2. Subir                #\n" 
-			"#  3. Modificar            #\n" 
-			"#  4. Registrar Autor      #\n" 
-			"#  5. Registrar Editorial  #\n" 
-			"#  6. Registrar Categoria  #\n" 
-			"#  7. Salir                #\n" 
-			"#                          #\n" 
-			"############################\n" 
-			"#      Inserte numero      #\n" 
-			"############################\n"
+		"\n############################\n" 
+		"#//////////////////////////#\n"
+		"#     	  MAIN MENU        #\n" 
+		"#//////////////////////////#\n" 
+		"############################\n" 
+		"#                          #\n" 
+		"#  1. Leer                 #\n" 
+		"#  2. Subir                #\n" 
+		"#  3. Modificar            #\n" 
+		"#  4. Registrar Autor      #\n" 
+		"#  5. Registrar Editorial  #\n" 
+		"#  6. Registrar Categoria  #\n" 
+		"#  7. Salir                #\n" 
+		"#                          #\n" 
+		"############################\n" 
+		"#      Inserte numero      #\n" 
+		"############################\n"
 	);
 
 	//FFLUSH(stdout);
@@ -601,7 +602,21 @@ int mainWindowMenu() {
 }
 
 
-void windowSelector(int n) {
+void reiniciarPrograma(char *argv[]) {
+    // Lógica para reiniciar el programa
+    printf("Reiniciando el programa...\n");
+
+    // Creamos un arreglo de argumentos para la función execv()
+    const char *argumentos[] = {argv[0], NULL};
+
+    // Ejecutamos el programa nuevamente
+    if (execv(argv[0], argumentos) == -1) {
+        perror("Error al reiniciar el programa");
+    }
+}
+
+
+void windowSelector(int n, char *argv[]) {
 
 	switch (n) {
 	    case 1:
@@ -633,28 +648,27 @@ void windowSelector(int n) {
 		  break;
 
 	    default:
-	      // default statements
-	      printf(
-	    		  "############################\n" 
-			      "#//////////////////////////#\n" 
-				  "#   INSERTE VALOR VALIDO   #\n" 
-				  "#//////////////////////////#\n" 
-				  "############################\n"
-	      );
-	      sleep(3);
-		  system("cls");
-		  break;
+			// default statements
+			printf(
+				"############################\n" 
+				"#//////////////////////////#\n" 
+				"#   INSERTE VALOR VALIDO   #\n" 
+				"#//////////////////////////#\n" 
+				"############################\n"
+			);
+			sleep(3);
+			system("cls");
+			reiniciarPrograma(argv);
+
 	}
 
 }
 
 
-void main(void) {
-
-	while (1)
-	{
-		windowSelector(mainWindowMenu());
-	}
-
+// main function
+int main(int argc, char *argv[]) {
+    while (1) {
+        windowSelector(mainWindowMenu(), argv);
+    }
+    return 0;
 }
-
