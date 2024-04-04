@@ -7,7 +7,7 @@
 #include "strings/strings.h"
 
 
-// FFLUSH(STDOUT) -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
+// fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
 
 void autor() {
@@ -213,7 +213,7 @@ void registrarAutorMenu() {
 	endMenu();
 
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
 
@@ -222,7 +222,7 @@ void registrarAutorMenu() {
 	endMenu();
 
 	insertarFechaNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
 
@@ -231,7 +231,7 @@ void registrarAutorMenu() {
 	endMenu();
 
 	insertarLugarNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", place);
 	system("cls");
 
@@ -252,7 +252,7 @@ void registrarCategoriaMenu() {
 	endMenu();
 
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
 
@@ -273,7 +273,7 @@ void registrarEditorialMenu() {
 	endMenu();
 
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
 
@@ -282,7 +282,7 @@ void registrarEditorialMenu() {
 	endMenu();
 
 	insertarFechaNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
 
@@ -311,7 +311,7 @@ void leerMenu() {
 	autor();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
 
@@ -323,7 +323,7 @@ void leerMenu() {
 	fecha();
 	endMenuShorter();
 	insertarFechaNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
 
@@ -335,7 +335,7 @@ void leerMenu() {
 	titulo();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", title);
 	system("cls");
 
@@ -347,7 +347,7 @@ void leerMenu() {
 	categoria();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", category);
 	system("cls");
 
@@ -359,7 +359,7 @@ void leerMenu() {
 	editorial();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", edit);
 	system("cls");
 
@@ -368,12 +368,12 @@ void leerMenu() {
 
 	mainWindowMenu();
 
-	free(name);
-	free(title);
-	free(date);
-	free(place);
-	free(category);
-	free(edit);
+	//free(name);
+	//free(title);
+	//free(date);
+	//free(place);
+	//free(category);
+	//free(edit);
 
 }
 
@@ -386,7 +386,7 @@ void subirMenu() {
 	char *place[50];
 	char *category[50];
 	char *edit[50];
-	char *content[];
+	char *content[500];
 
 	subir();
 	libro();
@@ -407,7 +407,7 @@ void subirMenu() {
 	fecha();
 	endMenuShorter();
 	insertarFechaNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
 
@@ -419,7 +419,7 @@ void subirMenu() {
 	titulo();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", title);
 	system("cls");
 
@@ -431,7 +431,7 @@ void subirMenu() {
 	categoria();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", category);
 	system("cls");
 
@@ -443,7 +443,7 @@ void subirMenu() {
 	editorial();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", edit);
 	system("cls");
 
@@ -455,7 +455,7 @@ void subirMenu() {
 	contenido();
 	endMenuShorter();
 	insertarTexto();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", content);
 	system("cls");
 
@@ -464,13 +464,13 @@ void subirMenu() {
 
 	mainWindowMenu();
 
-	free(name);
-	free(title);
-	free(date);
-	free(place);
-	free(category);
-	free(edit);
-	free(content);
+	//free(name);
+	//free(title);
+	//free(date);
+	//free(place);
+	//free(category);
+	//free(edit);
+	//free(content);
 
 }
 
@@ -492,7 +492,7 @@ void modificarMenu() {
 	autor();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
 
@@ -504,7 +504,7 @@ void modificarMenu() {
 	fecha();
 	endMenuShorter();
 	insertarFechaNacimiento();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
 
@@ -516,7 +516,7 @@ void modificarMenu() {
 	titulo();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", title);
 	system("cls");
 
@@ -528,7 +528,7 @@ void modificarMenu() {
 	categoria();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", category);
 	system("cls");
 
@@ -540,7 +540,7 @@ void modificarMenu() {
 	editorial();
 	endMenuShorter();
 	insertarNombre();
-	FFLUSH(stdout);
+	//FFLUSH(stdout);
 	scanf("%s", edit);
 	system("cls");
 
@@ -549,12 +549,12 @@ void modificarMenu() {
 
 	mainWindowMenu();
 
-	free(name);
-	free(title);
-	free(date);
-	free(place);
-	free(category);
-	free(edit);
+	//free(name);
+	//free(title);
+	//free(date);
+	//free(place);
+	//free(category);
+	//free(edit);
 
 }
 
@@ -599,14 +599,13 @@ void windowSelector(int n) {
 				  "#//////////////////////////#\n" 
 				  "############################\n"
 	      );
-	      //sleep(int 3);
-	      mainWindow();
+	      sleep(3);
 	}
 
 }
 
 
-void mainWindowMenu() {
+int mainWindowMenu() {
 
 	int input;
 
@@ -629,16 +628,19 @@ void mainWindowMenu() {
 			"#      Inserte numero      #\n" 
 			"############################\n"
 	);
-	FFLUSH(STDOUT);
+	//FFLUSH(stdout);
 	scanf("%d", &input);
-	windowSelector(input);
+	return input;
 
 }
 
 
 void main(void) {
 
-	mainWindowMenu();
+	while (1)
+	{
+		windowSelector(mainWindowMenu());
+	}
 
 }
 

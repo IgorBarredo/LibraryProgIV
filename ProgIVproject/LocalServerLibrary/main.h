@@ -2,7 +2,7 @@
 #define MAIN_H_
 
 
-void mainWindowMenu();
+int mainWindowMenu();
 void registrarAutorMenu();
 void registrarCategoriaMenu();
 void registrarEditorialMenu();
