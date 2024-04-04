@@ -601,6 +601,7 @@ void windowSelector(int n) {
 	      );
 	      sleep(3);
 		  system("cls");
+		  break;
 	}
 
 }
