@@ -387,7 +387,7 @@ void subirMenu() {
 	char *place[50];
 	char *category[50];
 	char *edit[50];
-	char *content[500];
+	char *content[200];
 
 	subir();
 	libro();
@@ -458,6 +458,11 @@ void subirMenu() {
 	insertarTexto();
 	//FFLUSH(stdout);
 	scanf("%s", content);
+	int size = sizeof(content);									// Sacamos la cantidad de caracteres
+	if (size > 200) {											// que hemos tecleado en el input
+        char *newContent = malloc(size * sizeof(char));			// y las metemos en una nueva variable
+		strcpy(newContent, content);
+    }
 	system("cls");
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
@@ -659,7 +664,7 @@ void windowSelector(int n, char *argv[]) {
 			sleep(3);
 			system("cls");
 			reiniciarPrograma(argv);
-
+	
 	}
 
 }
