@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "main.h"
+#include "sqlite3.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 
 
@@ -238,8 +239,8 @@ void registrarAutorMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 	char sql[100];
-	sprintf(sql,"insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, '%s', '%s', '%s')", name, date, place); 
-
+	sprintf(sql,"insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, '%s', '%s', '%s')", name, date, place);
+	
 	int rc = sqlite3_exec(db, sql, 0, 0, 0);
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Error al insertar autor: %s\n", sqlite3_errmsg(db));
