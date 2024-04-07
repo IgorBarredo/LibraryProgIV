@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "main.h"
-#include "strings/strings.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 
 
