@@ -245,7 +245,7 @@ void registrarAutorMenu() {
         fprintf(stderr, "Error al insertar autor: %s\n", sqlite3_errmsg(db));
         return;
     }
-	mainWindowMenu();
+
 }
 
 
@@ -261,8 +261,6 @@ void registrarCategoriaMenu() {
 	//FFLUSH(stdout);
 	scanf("%s", name);
 	system("cls");
-
-	mainWindowMenu();
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
@@ -291,8 +289,6 @@ void registrarEditorialMenu() {
 	//FFLUSH(stdout);
 	scanf("%s", date);
 	system("cls");
-
-	mainWindowMenu();
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
@@ -372,7 +368,6 @@ void leerMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 
-	mainWindowMenu();
 
 	//free(name);
 	//free(title);
@@ -473,8 +468,6 @@ void subirMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 
-	mainWindowMenu();
-
 	//free(name);
 	//free(title);
 	//free(date);
@@ -557,8 +550,6 @@ void modificarMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
-
-	mainWindowMenu();
 
 	//free(name);
 	//free(title);
