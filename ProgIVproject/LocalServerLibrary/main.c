@@ -5,7 +5,8 @@
 #include <unistd.h>
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
-
+#include "sqlManager.c"
+#include "sqlite3.h"
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
@@ -237,15 +238,23 @@ void registrarAutorMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
-	char sql[100];
-	sprintf(sql,"insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, '%s', '%s', '%s')", name, date, place); 
+	int result;
+	sqlite3 *db = abrirDB();
+    int resultado;
+    sqlite3_stmt *stmt;
+    char sql1[]= "insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
+    sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, name, strlen(name), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 2, name, strlen(date), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 3, name, strlen(place), SQLITE_STATIC);
 
-	int rc = sqlite3_exec(db, sql, 0, 0, 0);
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "Error al insertar autor: %s\n", sqlite3_errmsg(db));
-        return;
-    }
-
+	result = sqlite3_step(stmt);
+	/*if (result != SQLITE_DONE) {
+		printf("Error insertando autor\n");
+	}else{
+		printf("Autor; %s, %s, %s insertado\n", name, date, place);
+	}*/
+	sqlite3_finalize(stmt);
 }
 
 
