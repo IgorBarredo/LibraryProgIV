@@ -12,6 +12,7 @@
 #include "include/categoria.h"
 #include "include/editorial.h"
 #include "include/libro.h"
+#include <time.h>
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
@@ -745,6 +746,18 @@ void windowSelector(int n, char *argv[]) {
 				"#//////////////////////////#\n" 
 				"############################\n"
 			);
+
+			time_t currentTime;
+			time(&currentTime);
+			struct tm *localTime = localtime(&currentTime);
+			char timeString[50];
+			strftime(timeString, sizeof(timeString), "%Y-%m-%d %H:%M:%S", localTime);
+
+			FILE *logFile = fopen("log.txt", "a");
+			if (logFile != NULL) {
+				fprintf(logFile, "Valor invalido usado en el menú %s\n", timeString);
+				fclose(logFile);
+			}
 			sleep(3);
 			system("cls");
 			reiniciarPrograma(argv);
@@ -752,6 +765,8 @@ void windowSelector(int n, char *argv[]) {
 	}
 
 }
+
+
 
 
 // main function

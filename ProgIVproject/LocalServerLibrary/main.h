@@ -1,7 +1,6 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-
 int mainWindowMenu();
 void registrarAutorMenu();
 void registrarCategoriaMenu();
