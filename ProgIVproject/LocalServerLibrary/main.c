@@ -405,15 +405,50 @@ void registrarEditorialMenu() {
 
 void leerMenu() {
 
-	char *name[50];
-	char *title[50];
-	char *date[50];
-	char *place[50];
-	char *category[50];
-	char *edit[50];
+	//char *name[50];
+	//char *title[50];
+	//char *date[50];
+	//char *place[50];
+	//char *category[50];
+	//char *edit[50];
 
+	int opcion;
+
+	printf("############################\n");
+	printf("#--------------------------#\n");
+    printf("Buscar por:\n");
+    printf("1) Autor\n");
+    printf("2) Fecha\n");
+    printf("3) Titulo\n");
+    printf("4) Categoria\n");
+    printf("5) Editorial\n");
+	printf("#--------------------------#\n");
+	printf("############################\n");
+    printf("Ingrese el numero correspondiente a la opcion deseada: ");
+	fflush(stdout);
+    scanf("%d", &opcion);
 	
-	leer();
+	switch (opcion) {
+        case 1:
+			buscarPorAutor();
+            break;
+        case 2:
+            buscarPorFecha();
+            break;
+        case 3:
+            buscarPorTitulo();
+            break;
+        case 4:
+            buscarPorCategoria();
+            break;
+        case 5:
+            buscarPorEditorial();
+            break;
+        default:
+            printf("Opción no válida\n");
+    }
+
+	/*leer();
 	libro();
 	endMenu();
 
@@ -482,8 +517,69 @@ void leerMenu() {
 	//free(date);
 	//free(place);
 	//free(category);
-	//free(edit);
+	//free(edit);*/
 
+}
+
+void buscarPorAutor() {
+	// Conectar a la base de datos
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
+		return;
+	}
+
+	// Preparar el statement SQL para recuperar los nombres de los autores
+	sqlite3_stmt *stmt4;
+	char sql[] = "SELECT id_aut, nombre_a FROM autor";
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt4, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Ejecutar la consulta y recuperar los nombres de los autores
+	printf("Autores:\n");
+	while (sqlite3_step(stmt4) == SQLITE_ROW) {
+		const unsigned char *codAut = sqlite3_column_text(stmt4, 1);
+		printf("%s\n", codAut);
+	}
+
+	// Finalizar la consulta anterior
+	sqlite3_finalize(stmt4);
+	
+
+	// Prompt el usuario para seleccionar un autor
+	int selectedAuthor;
+	printf("Escriba el codigo del autor que desea seleccionar: ");
+	scanf("%d", &selectedAuthor);
+
+	// Preparar el statement SQL para recuperar los títulos de los libros del autor seleccionado
+	sqlite3_stmt *stmt5;
+	char sql[100];
+	sprintf(sql, "SELECT titulo FROM libro WHERE id_aut = '%d'", selectedAuthor);
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt5, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the SQL statement and retrieve the book titles
+	printf("Libros del autor %s:\n", selectedAuthor);
+	while (sqlite3_step(stmt5) == SQLITE_ROW) {
+		const unsigned char *bookTitle = sqlite3_column_text(stmt5, 0);
+		printf("%s\n", bookTitle);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt5);
+	sqlite3_close(db);
 }
 
 
