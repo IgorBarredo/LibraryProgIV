@@ -21,20 +21,20 @@ void logError(const char* mensajeError) {
 	char hora[20];
 	strftime(hora, sizeof(hora), "%Y-%m-%d %H:%M:%S", tiempo);
 
-	FILE* archivoLog = fopen("config.txt", "r");
-	if (archivoLog == NULL) {
+	FILE* archivoConfig = fopen("config.txt", "r");
+	if (archivoConfig == NULL) {
 		printf("Error opening config file\n");
 		logError("Error opening config file");
 		return;
 	}
 	char ruta[4096];
-	if (fgets(ruta, sizeof(ruta), archivoLog) == NULL) {
+	if (fgets(ruta, sizeof(ruta), archivoConfig) == NULL) {
 		printf("Error reading config file\n");
 		logError("Error reading config file");
-		fclose(archivoLog);
+		fclose(archivoConfig);
 		return;
 	}
-	fclose(archivoLog);
+	fclose(archivoConfig);
 	FILE* archivoLog = fopen(ruta, "a");
 
 	if (archivoLog != NULL) {
