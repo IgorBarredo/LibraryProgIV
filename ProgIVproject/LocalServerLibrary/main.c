@@ -216,11 +216,6 @@ void registrarAutorMenu() {
 
 	Autor objAutor;
 
-	//Preguntar cuántos autores se van a registrar
-	
-	
-
-
 	registrar();
 	autor();
 	endMenu();
@@ -266,7 +261,7 @@ void registrarAutorMenu() {
 
     sqlite3_stmt *stmt;
 
-    char sql1[]= "insert into autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
+    char sql1[]= "insert into autor (nombre_a, fecha_ncto, lugar_ncto) values (?, ?, ?)";
     
 	sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, name, strlen(name), SQLITE_STATIC);
@@ -288,25 +283,53 @@ void registrarAutorMenu() {
 void registrarCategoriaMenu() {
 
 	char *name[50];
-
+	Categoria objCategoria;	
 	registrar();
 	categoria();
 	endMenu();
 
 	insertarNombre();
 	//FFLUSH(stdout);
-	scanf("%s", name);
+	scanf("%s", objCategoria.name);
 	system("cls");
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		return;
+	}
+
+	sqlite3_stmt *stmt;
+	char sql[] = "INSERT INTO categoria (nombre_c) VALUES (?)";
+
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+
+	sqlite3_bind_text(stmt, 1, objCategoria.name, strlen(objCategoria.name), SQLITE_STATIC);
+
+	result = sqlite3_step(stmt);
+	if (result != SQLITE_DONE) {
+		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+	}
+
+	sqlite3_finalize(stmt);
+	sqlite3_close(db);
 }
 
 void registrarEditorialMenu() {
 
-	char *name[50];
-	char *date[50];
+	/*char *name[50];
+	char *date[50];*/
+	Editorial objEditorial;
 
 	registrar();
 	editorial();
@@ -314,7 +337,7 @@ void registrarEditorialMenu() {
 
 	insertarNombre();
 	//FFLUSH(stdout);
-	scanf("%s", name);
+	scanf("%s", objEditorial.nombre);
 	system("cls");
 
 	registrar();
@@ -323,7 +346,7 @@ void registrarEditorialMenu() {
 
 	insertarFechaNacimiento();
 	//FFLUSH(stdout);
-	scanf("%s", date);
+	scanf("%s", objEditorial.fecha);
 	system("cls");
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
@@ -341,6 +364,7 @@ void leerMenu() {
 	char *category[50];
 	char *edit[50];
 
+	
 	leer();
 	libro();
 	endMenu();

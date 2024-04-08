@@ -1,5 +1,8 @@
+#ifndef CATEGORIA_H
+#define CATEGORIA_H
 
-
-typedef struct{
+typedef struct {
     char *name;
-}Categoria;
+} Categoria;
+
+#endif
