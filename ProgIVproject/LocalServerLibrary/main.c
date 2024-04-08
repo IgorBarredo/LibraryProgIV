@@ -240,11 +240,13 @@ void registrarAutorMenu() {
 	// CONNECT WITH THE REST OF THE APLICATION
 
 	int result;
+	int resultado;
 	sqlite3 *db = abrirDB();
-    int resultado;
     sqlite3_stmt *stmt;
-    char sql1[]= "insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
-    sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
+
+    char sql1[]= "insert into autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
+    
+	sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, name, strlen(name), SQLITE_STATIC);
 	sqlite3_bind_text(stmt, 2, name, strlen(date), SQLITE_STATIC);
 	sqlite3_bind_text(stmt, 3, name, strlen(place), SQLITE_STATIC);
