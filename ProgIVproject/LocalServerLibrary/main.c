@@ -238,19 +238,18 @@ void registrarAutorMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
-<<<<<<< HEAD
 
 	int result;
 	int resultado;
 	sqlite3 *db = abrirDB();
-=======
+
 	
 	
 	//int result;
 	//sqlite3 *db = abrirDB();
 /* sqlite3 *db;
     int result = sqlite3_open("biblioteca.db", &db);
->>>>>>> b0d4e94660f8d4ca0d7afa5a54172f92011d62f1
+
     sqlite3_stmt *stmt;
 
     char sql1[]= "insert into autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
