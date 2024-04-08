@@ -5,8 +5,8 @@
 #include <unistd.h>
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
-#include "sqlManager.c"
-#include "sqlite3.h"
+//#include "sqlManager.c"
+#include "db/sqlite3.h"
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
@@ -59,7 +59,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-		"#          Título          #\n"
+		"#          Titulo          #\n"
 	);
 
 }
@@ -68,7 +68,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-		"#        Categoría         #\n"
+		"#        Categoria         #\n"
 	);
 
 }
@@ -238,10 +238,19 @@ void registrarAutorMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
+<<<<<<< HEAD
 
 	int result;
 	int resultado;
 	sqlite3 *db = abrirDB();
+=======
+	
+	
+	//int result;
+	//sqlite3 *db = abrirDB();
+/* sqlite3 *db;
+    int result = sqlite3_open("biblioteca.db", &db);
+>>>>>>> b0d4e94660f8d4ca0d7afa5a54172f92011d62f1
     sqlite3_stmt *stmt;
 
     char sql1[]= "insert into autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
@@ -253,12 +262,13 @@ void registrarAutorMenu() {
 
 
 	result = sqlite3_step(stmt);
-	/*if (result != SQLITE_DONE) {
+	if (result != SQLITE_DONE) {
 		printf("Error insertando autor\n");
 	}else{
 		printf("Autor; %s, %s, %s insertado\n", name, date, place);
-	}*/
-	sqlite3_finalize(stmt);
+	}
+	sqlite3_finalize(stmt); 
+	*/
 }
 
 
@@ -304,7 +314,7 @@ void registrarEditorialMenu() {
 	system("cls");
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION
+	// CONNECT WITH THE REST OF THE APLICATION j
 
 }
 
@@ -581,13 +591,13 @@ int mainWindowMenu() {
 	printf(
 		"\n############################\n" 
 		"#//////////////////////////#\n"
-		"#     	  MAIN MENU        #\n" 
+		"#     	  BIBLIOTECA        #\n" 
 		"#//////////////////////////#\n" 
 		"############################\n" 
 		"#                          #\n" 
-		"#  1. Leer                 #\n" 
-		"#  2. Subir                #\n" 
-		"#  3. Modificar            #\n" 
+		"#  1. Leer Libro           #\n" 
+		"#  2. Subir Libro          #\n" 
+		"#  3. Modificar Libro      #\n" 
 		"#  4. Registrar Autor      #\n" 
 		"#  5. Registrar Editorial  #\n" 
 		"#  6. Registrar Categoria  #\n" 
