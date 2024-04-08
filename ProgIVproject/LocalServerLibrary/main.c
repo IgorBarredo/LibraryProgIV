@@ -5,8 +5,8 @@
 #include <unistd.h>
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
-#include "sqlManager.c"
-#include "sqlite3.h"
+//#include "sqlManager.c"
+#include "db/sqlite3.h"
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
@@ -238,9 +238,12 @@ void registrarAutorMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
-	int result;
-	sqlite3 *db = abrirDB();
-    int resultado;
+	
+	
+	//int result;
+	//sqlite3 *db = abrirDB();
+    sqlite3 *db;
+    int result = sqlite3_open("biblioteca.db", &db);
     sqlite3_stmt *stmt;
     char sql1[]= "insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
     sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
