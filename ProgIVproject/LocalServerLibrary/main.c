@@ -575,28 +575,36 @@ void buscarPorAutor() {
 
 	// Preparar el statement SQL para recuperar los títulos de los libros del autor seleccionado
 	sqlite3_stmt *stmt5;
-	char sql[100];
-	sprintf(sql, "SELECT titulo FROM libro WHERE id_aut = '%d'", selectedAuthor);
-	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt5, NULL);
+	const char *sql5 = "SELECT titulo FROM libro WHERE id_aut = ?";
+	result = sqlite3_prepare_v2(db, sql5, strlen(sql) + 1, &stmt5, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
-		sqlite3_close(db);
-		return;
+   	 	logError("Error preparing statement");
+   	 	sqlite3_close(db);
+    	return;
 	}
 
-	// Execute the SQL statement and retrieve the book titles
-	printf("Libros del autor %s:\n", selectedAuthor);
+	// Vincular el valor del ID del autor al marcador de posición
+	result = sqlite3_bind_int(stmt5, 1, selectedAuthor);
+	if (result != SQLITE_OK) {
+  	 	printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+    	logError("Error binding parameter");
+    	sqlite3_finalize(stmt5);
+    	sqlite3_close(db);
+    	return;
+	}
+
+	// Ejecutar la consulta y recuperar los títulos de los libros
+	printf("Libros del autor %d:\n", selectedAuthor);
 	while (sqlite3_step(stmt5) == SQLITE_ROW) {
-		const unsigned char *bookTitle = sqlite3_column_text(stmt5, 0);
-		printf("%s\n", bookTitle);
+    	const unsigned char *bookTitle = sqlite3_column_text(stmt5, 0);
+    	printf("%s\n", bookTitle);
 	}
 
 	// Clean up
 	sqlite3_finalize(stmt5);
 	sqlite3_close(db);
 }
-
 
 void subirMenu() {
 
