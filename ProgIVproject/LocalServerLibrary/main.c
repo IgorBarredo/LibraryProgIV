@@ -248,42 +248,44 @@ void registrarAutorMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 
-	//int result;
-	//int resultado;
-	//sqlite3 *db = abrirDB();
+	int result;
+	sqlite3 *db;
+	result = sqlite3_open("biblioteca.db", &db);
 
-	
-	
-	//int result;
-	//sqlite3 *db = abrirDB();
-/* sqlite3 *db;
-    int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		return;
+	}
 
-    sqlite3_stmt *stmt;
+	sqlite3_stmt *stmt;
+	char sql[] = "INSERT INTO autor (nombre_a, fecha_ncto, lugar_ncto) VALUES (?, ?, ?)";
 
-    char sql1[]= "insert into autor (nombre_a, fecha_ncto, lugar_ncto) values (?, ?, ?)";
-    
-	sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, name, strlen(name), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 2, name, strlen(date), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 3, name, strlen(place), SQLITE_STATIC);
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
 
+	sqlite3_bind_text(stmt, 1, objAutor.name, strlen(objAutor.name), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 2, objAutor.date, strlen(objAutor.date), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 3, objAutor.place, strlen(objAutor.place), SQLITE_STATIC);
 
 	result = sqlite3_step(stmt);
 	if (result != SQLITE_DONE) {
-		printf("Error insertando autor\n");
-	}else{
-		printf("Autor; %s, %s, %s insertado\n", name, date, place);
+		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
 	}
-	sqlite3_finalize(stmt); 
-	*/
+
+	sqlite3_finalize(stmt);
+	sqlite3_close(db);
+
 }
 
 
 void registrarCategoriaMenu() {
-
-	char *name[50];
+	//char *name[50];
 	Categoria objCategoria;	
+	
 	registrar();
 	categoria();
 	endMenu();
@@ -304,24 +306,24 @@ void registrarCategoriaMenu() {
 		return;
 	}
 
-	sqlite3_stmt *stmt;
+	sqlite3_stmt *stmt2;
 	char sql[] = "INSERT INTO categoria (nombre_c) VALUES (?)";
 
-	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt2, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
 		sqlite3_close(db);
 		return;
 	}
 
-	sqlite3_bind_text(stmt, 1, objCategoria.name, strlen(objCategoria.name), SQLITE_STATIC);
+	sqlite3_bind_text(stmt2, 1, objCategoria.name, strlen(objCategoria.name), SQLITE_STATIC);
 
-	result = sqlite3_step(stmt);
+	result = sqlite3_step(stmt2);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
 	}
 
-	sqlite3_finalize(stmt);
+	sqlite3_finalize(stmt2);
 	sqlite3_close(db);
 }
 
@@ -352,8 +354,34 @@ void registrarEditorialMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION j
 
-}
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		return;
+	}
 
+	sqlite3_stmt *stmt3;
+	char sql[] = "INSERT INTO editorial (nombre_e, fecha_fundacion) VALUES (?, ?)";
+	
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt3, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+
+	sqlite3_bind_text(stmt3, 1, objEditorial.nombre, strlen(objEditorial.nombre), SQLITE_STATIC);
+	sqlite3_bind_text(stmt3, 2, objEditorial.fecha, strlen(objEditorial.fecha), SQLITE_STATIC);
+
+	result = sqlite3_step(stmt3);
+	if (result != SQLITE_DONE) {
+		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+	}
+
+	sqlite3_finalize(stmt3);
+	sqlite3_close(db);
+}
 
 void leerMenu() {
 
