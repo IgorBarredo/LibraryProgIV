@@ -606,6 +606,106 @@ void buscarPorAutor() {
 	sqlite3_close(db);
 }
 
+void buscarPorFecha(){
+
+}
+
+void buscarPorTitulo() {
+	// Conectar a la base de datos
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
+		return;
+	}
+
+	// Preparar el statement SQL para buscar libros por título
+	sqlite3_stmt *stmt;
+	const char *sql = "SELECT id_libro, titulo FROM libro WHERE titulo LIKE ?";
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK)
+	{
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Vincular el valor del título al marcador de posición
+	result = sqlite3_bind_text(stmt, 1, titulo, strlen(titulo), SQLITE_STATIC);
+	if (result != SQLITE_OK)
+	{
+		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+		logError("Error binding parameter");
+		sqlite3_finalize(stmt);
+		sqlite3_close(db);
+		return;
+	}
+
+	// Ejecutar la consulta y recuperar los títulos de los libros
+	printf("Lista de libros con título similar a '%s':\n", titulo);
+	while (sqlite3_step(stmt) == SQLITE_ROW)
+	{
+		int bookId = sqlite3_column_int(stmt, 0);
+		const unsigned char *bookTitle = sqlite3_column_text(stmt, 1);
+		printf("Código: %d, Título: %s\n", bookId, bookTitle);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt);
+
+	// Prompt el usuario para ingresar el código del libro seleccionado
+	int selectedBookId;
+	printf("Ingrese el código del libro que desea ver: ");
+	scanf("%d", &selectedBookId);
+
+	// Preparar el statement SQL para buscar el libro por código
+	sqlite3_stmt *stmt2;
+	const char *sql2 = "SELECT * FROM libro WHERE id_libro = ?";
+	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
+	if (result != SQLITE_OK)
+	{
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Vincular el valor del código al marcador de posición
+	result = sqlite3_bind_int(stmt2, 1, selectedBookId);
+	if (result != SQLITE_OK)
+	{
+		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+		logError("Error binding parameter");
+		sqlite3_finalize(stmt2);
+		sqlite3_close(db);
+		return;
+	}
+
+	// Ejecutar la consulta y recuperar los datos del libro
+	if (sqlite3_step(stmt2) == SQLITE_ROW)
+	{
+		int bookId = sqlite3_column_int(stmt2, 0);
+		const unsigned char *bookTitle = sqlite3_column_text(stmt2, 1);
+		const unsigned char *bookAuthor = sqlite3_column_text(stmt2, 2);
+		// Obtener los demás datos del libro y mostrarlos
+		printf("Código: %d\n", bookId);
+		printf("Título: %s\n", bookTitle);
+		printf("Autor: %s\n", bookAuthor);
+		// Mostrar los demás datos del libro
+	}
+	else
+	{
+		printf("No se encontró un libro con el código %d\n", selectedBookId);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt2);
+	sqlite3_close(db);
+}
+
+
 void subirMenu() {
 
 	char *name[50];
