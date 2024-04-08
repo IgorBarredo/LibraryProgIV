@@ -59,7 +59,7 @@ void editorial() {
 void titulo() {
 
 	printf(
-		"#          Título          #\n"
+		"#          Titulo          #\n"
 	);
 
 }
@@ -68,7 +68,7 @@ void titulo() {
 void categoria() {
 
 	printf(
-		"#        Categoría         #\n"
+		"#        Categoria         #\n"
 	);
 
 }
@@ -582,13 +582,13 @@ int mainWindowMenu() {
 	printf(
 		"\n############################\n" 
 		"#//////////////////////////#\n"
-		"#     	  MAIN MENU        #\n" 
+		"#     	  BIBLIOTECA        #\n" 
 		"#//////////////////////////#\n" 
 		"############################\n" 
 		"#                          #\n" 
-		"#  1. Leer                 #\n" 
-		"#  2. Subir                #\n" 
-		"#  3. Modificar            #\n" 
+		"#  1. Leer Libro           #\n" 
+		"#  2. Subir Libro          #\n" 
+		"#  3. Modificar Libro      #\n" 
 		"#  4. Registrar Autor      #\n" 
 		"#  5. Registrar Editorial  #\n" 
 		"#  6. Registrar Categoria  #\n" 
