@@ -15,7 +15,19 @@
 #include <time.h>
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
+void logError(const char* mensajeError) {
+	time_t ahora = time(NULL);
+	struct tm* tiempo = localtime(&ahora);
+	char hora[20];
+	strftime(hora, sizeof(hora), "%Y-%m-%d %H:%M:%S", tiempo);
 
+	FILE* archivoLog = fopen("log.txt", "a");
+	if (archivoLog != NULL) {
+		fprintf(archivoLog, "[%s] Error: %s\n", hora, mensajeError);
+		fclose(archivoLog);
+	}
+
+}
 
 void autor() {
 
@@ -211,9 +223,7 @@ void insertarLugarNacimiento() {
 
 void registrarAutorMenu() {
 
-	/*char *name[50];
-	char *date[50];
-	char *place[50];*/
+
 
 	Autor objAutor;
 
@@ -255,6 +265,7 @@ void registrarAutorMenu() {
 
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
 		return;
 	}
 
@@ -264,6 +275,7 @@ void registrarAutorMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -275,6 +287,7 @@ void registrarAutorMenu() {
 	result = sqlite3_step(stmt);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+		logError("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt);
@@ -304,6 +317,7 @@ void registrarCategoriaMenu() {
 
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
 		return;
 	}
 
@@ -313,6 +327,7 @@ void registrarCategoriaMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt2, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -322,6 +337,7 @@ void registrarCategoriaMenu() {
 	result = sqlite3_step(stmt2);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+		logError("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt2);
@@ -359,6 +375,7 @@ void registrarEditorialMenu() {
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
 		return;
 	}
 
@@ -368,6 +385,7 @@ void registrarEditorialMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt3, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -378,6 +396,7 @@ void registrarEditorialMenu() {
 	result = sqlite3_step(stmt3);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+		logError("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt3);
@@ -702,6 +721,7 @@ void reiniciarPrograma(char *argv[]) {
     // Ejecutamos el programa nuevamente
     if (execv(argv[0], argumentos) == -1) {
         perror("Error al reiniciar el programa");
+		logError("Error al reiniciar el programa");
     }
 }
 
@@ -747,17 +767,7 @@ void windowSelector(int n, char *argv[]) {
 				"############################\n"
 			);
 
-			time_t currentTime;
-			time(&currentTime);
-			struct tm *localTime = localtime(&currentTime);
-			char timeString[50];
-			strftime(timeString, sizeof(timeString), "%Y-%m-%d %H:%M:%S", localTime);
-
-			FILE *logFile = fopen("log.txt", "a");
-			if (logFile != NULL) {
-				fprintf(logFile, "Valor invalido usado en el menú %s\n", timeString);
-				fclose(logFile);
-			}
+			logError("Valor no válido");
 			sleep(3);
 			system("cls");
 			reiniciarPrograma(argv);
@@ -765,8 +775,6 @@ void windowSelector(int n, char *argv[]) {
 	}
 
 }
-
-
 
 
 // main function
