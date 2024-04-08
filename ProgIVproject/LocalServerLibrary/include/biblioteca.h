@@ -2,7 +2,6 @@
 #define BIBLIOTECA_H
 #include "libro.h"
 typedef struct{
-    
     Libro **lslibros;
     int cantiLibros;
 }Biblioteca;

@@ -3,6 +3,9 @@
 
 typedef struct {
     char *name;
-} Categoria;
+}Categoria;
+
+Categoria* crearCategoria(const char *nombre);
+void destruirCategoria(Categoria *categoria);
 
 #endif
