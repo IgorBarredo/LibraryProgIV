@@ -433,10 +433,9 @@ void leerMenu() {
 	printf("#--------------------------#\n");
     printf("Buscar por:\n");
     printf("1) Autor\n");
-    printf("2) Fecha\n");
-    printf("3) Titulo\n");
-    printf("4) Categoria\n");
-    printf("5) Editorial\n");
+    printf("2) Titulo\n");
+    printf("3) Categoria\n");
+    printf("4) Editorial\n");
 	printf("#--------------------------#\n");
 	printf("############################\n");
     printf("Ingrese el numero correspondiente a la opcion deseada: ");
@@ -448,15 +447,12 @@ void leerMenu() {
 			buscarPorAutor();
             break;
         case 2:
-            buscarPorFecha();
-            break;
-        case 3:
             buscarPorTitulo();
             break;
-        case 4:
+        case 3:
             buscarPorCategoria();
             break;
-        case 5:
+        case 4:
             buscarPorEditorial();
             break;
         default:
@@ -606,9 +602,7 @@ void buscarPorAutor() {
 	sqlite3_close(db);
 }
 
-void buscarPorFecha(){
 
-}
 
 void buscarPorTitulo() {
 	// Conectar a la base de datos
@@ -705,7 +699,76 @@ void buscarPorTitulo() {
 	sqlite3_close(db);
 }
 
+void buscarPorCategoria() {
+	// Connect to the database
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		logError("Error opening database");
+		return;
+	}
 
+	// Prepare the SQL statement to retrieve the categories
+	sqlite3_stmt *stmt;
+	const char *sql = "SELECT id_cat, nombre_c FROM categoria";
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the categories
+	printf("Categorías disponibles:\n");
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		int codigo = sqlite3_column_int(stmt, 0);
+		const unsigned char *nombre = sqlite3_column_text(stmt, 1);
+		printf("Código: %d, Nombre: %s\n", codigo, nombre);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt);
+
+	// Prompt the user to enter a category code
+	int selectedCodigo;
+	printf("Ingrese el código de la categoría que desea ver: ");
+	scanf("%d", &selectedCodigo);
+
+	// Preparar el statement SQL para recuperar los libros de la categoría seleccionada
+	sqlite3_stmt *stmt2;
+	const char *sql2 = "SELECT * FROM libro WHERE id_cat = ?";
+	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		logError("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+
+	result = sqlite3_bind_int(stmt2, 1, selectedCodigo);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+		logError("Error binding parameter");
+		sqlite3_finalize(stmt2);
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the books
+	printf("Libros de la categoría con código %d:\n", selectedCodigo);
+	while (sqlite3_step(stmt2) == SQLITE_ROW) {
+		int bookId = sqlite3_column_int(stmt2, 0);
+		const unsigned char *bookTitle = sqlite3_column_text(stmt2, 1);
+		printf("Código: %d, Título: %s\n", bookId, bookTitle);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt2);
+	sqlite3_close(db);
+}
 void subirMenu() {
 
 	char *name[50];
