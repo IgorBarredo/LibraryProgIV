@@ -242,7 +242,7 @@ void registrarAutorMenu() {
 	
 	//int result;
 	//sqlite3 *db = abrirDB();
-    sqlite3 *db;
+/* sqlite3 *db;
     int result = sqlite3_open("biblioteca.db", &db);
     sqlite3_stmt *stmt;
     char sql1[]= "insert into Autor (id_aut, nombre_a, fecha_ncto, lugar_ncto) values (null, ?, ?, ?)";
@@ -253,12 +253,13 @@ void registrarAutorMenu() {
 
 
 	result = sqlite3_step(stmt);
-	/*if (result != SQLITE_DONE) {
+	if (result != SQLITE_DONE) {
 		printf("Error insertando autor\n");
 	}else{
 		printf("Autor; %s, %s, %s insertado\n", name, date, place);
-	}*/
-	sqlite3_finalize(stmt);
+	}
+	sqlite3_finalize(stmt); 
+	*/
 }
 
 
