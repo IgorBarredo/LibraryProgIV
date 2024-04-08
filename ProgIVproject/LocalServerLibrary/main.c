@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "main.h"
-#include "sqlite3.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 #include "sqlManager.c"
 #include "sqlite3.h"
