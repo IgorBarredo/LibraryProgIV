@@ -23,7 +23,7 @@ void subir();
 void modificar();
 void leer();
 void buscarPor();
-
+void logError();
 
 
 
