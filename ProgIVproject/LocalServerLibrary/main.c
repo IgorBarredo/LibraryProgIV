@@ -14,14 +14,29 @@
 #include "include/libro.h"
 #include <time.h>
 
-// fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
+
 void logError(const char* mensajeError) {
 	time_t ahora = time(NULL);
 	struct tm* tiempo = localtime(&ahora);
 	char hora[20];
 	strftime(hora, sizeof(hora), "%Y-%m-%d %H:%M:%S", tiempo);
 
-	FILE* archivoLog = fopen("log.txt", "a");
+	FILE* archivoLog = fopen("config.txt", "r");
+	if (archivoLog == NULL) {
+		printf("Error opening config file\n");
+		logError("Error opening config file");
+		return;
+	}
+	char ruta[4096];
+	if (fgets(ruta, sizeof(ruta), archivoLog) == NULL) {
+		printf("Error reading config file\n");
+		logError("Error reading config file");
+		fclose(archivoLog);
+		return;
+	}
+	fclose(archivoLog);
+	FILE* archivoLog = fopen(ruta, "a");
+
 	if (archivoLog != NULL) {
 		fprintf(archivoLog, "[%s] Error: %s\n", hora, mensajeError);
 		fclose(archivoLog);
