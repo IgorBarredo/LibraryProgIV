@@ -251,6 +251,7 @@ void registrarAutorMenu() {
 	sqlite3_bind_text(stmt, 2, name, strlen(date), SQLITE_STATIC);
 	sqlite3_bind_text(stmt, 3, name, strlen(place), SQLITE_STATIC);
 
+
 	result = sqlite3_step(stmt);
 	/*if (result != SQLITE_DONE) {
 		printf("Error insertando autor\n");
