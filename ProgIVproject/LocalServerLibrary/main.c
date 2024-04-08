@@ -6,7 +6,12 @@
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 //#include "sqlManager.c"
+
 #include "db/sqlite3.h"
+#include "include/autor.h"
+#include "include/categoria.h"
+#include "include/editorial.h"
+#include "include/libro.h"
 
 // fflush(stdout); -- hace que en este punto muestre todo lo que hay en el buffer por pantalla
 
@@ -205,9 +210,16 @@ void insertarLugarNacimiento() {
 
 void registrarAutorMenu() {
 
-	char *name[50];
+	/*char *name[50];
 	char *date[50];
-	char *place[50];
+	char *place[50];*/
+
+	Autor objAutor;
+
+	//Preguntar cuántos autores se van a registrar
+	
+	
+
 
 	registrar();
 	autor();
@@ -215,7 +227,7 @@ void registrarAutorMenu() {
 
 	insertarNombre();
 	//FFLUSH(stdout);
-	scanf("%s", name);
+	scanf("%s", objAutor.name);
 	system("cls");
 
 	registrar();
@@ -224,7 +236,7 @@ void registrarAutorMenu() {
 
 	insertarFechaNacimiento();
 	//FFLUSH(stdout);
-	scanf("%s", date);
+	scanf("%s", objAutor.date);
 	system("cls");
 
 	registrar();
@@ -233,15 +245,17 @@ void registrarAutorMenu() {
 
 	insertarLugarNacimiento();
 	//FFLUSH(stdout);
-	scanf("%s", place);
+	scanf("%s", objAutor.place);
 	system("cls");
+
+	printf("Nombre: %s\n", objAutor.name);
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
 
-	int result;
-	int resultado;
-	sqlite3 *db = abrirDB();
+	//int result;
+	//int resultado;
+	//sqlite3 *db = abrirDB();
 
 	
 	
