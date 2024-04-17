@@ -5,18 +5,13 @@
 #include <unistd.h>
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
-//#include "sqlManager.c"
-
 #include "db/sqlite3.h"
 #include "include/autor.h"
 #include "include/categoria.h"
 #include "include/editorial.h"
 #include "include/libro.h"
 #include <time.h>
-#include "gestorDeArchivos.h"
-
-
-
+#include "gestorDeArchivos/gestorDeArchivos.h"
 
 void autor() {
 
