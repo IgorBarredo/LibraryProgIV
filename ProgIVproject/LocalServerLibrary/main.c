@@ -13,36 +13,10 @@
 #include "include/editorial.h"
 #include "include/libro.h"
 #include <time.h>
+#include "gestorDeArchivos.h"
 
 
-void logError(const char* mensajeError) {
-	time_t ahora = time(NULL);
-	struct tm* tiempo = localtime(&ahora);
-	char hora[20];
-	strftime(hora, sizeof(hora), "%Y-%m-%d %H:%M:%S", tiempo);
 
-	FILE* archivoConfig = fopen("config.txt", "r");
-	if (archivoConfig == NULL) {
-		printf("Error opening config file\n");
-		logError("Error opening config file");
-		return;
-	}
-	char ruta[4096];
-	if (fgets(ruta, sizeof(ruta), archivoConfig) == NULL) {
-		printf("Error reading config file\n");
-		logError("Error reading config file");
-		fclose(archivoConfig);
-		return;
-	}
-	fclose(archivoConfig);
-	FILE* archivoLog = fopen(ruta, "a");
-
-	if (archivoLog != NULL) {
-		fprintf(archivoLog, "[%s] Error: %s\n", hora, mensajeError);
-		fclose(archivoLog);
-	}
-
-}
 
 void autor() {
 
@@ -280,7 +254,7 @@ void registrarAutorMenu() {
 
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -290,7 +264,7 @@ void registrarAutorMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -302,7 +276,7 @@ void registrarAutorMenu() {
 	result = sqlite3_step(stmt);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
-		logError("Error inserting data");
+		guardarErrorEnLog("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt);
@@ -332,7 +306,7 @@ void registrarCategoriaMenu() {
 
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -342,7 +316,7 @@ void registrarCategoriaMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt2, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -352,7 +326,7 @@ void registrarCategoriaMenu() {
 	result = sqlite3_step(stmt2);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
-		logError("Error inserting data");
+		guardarErrorEnLog("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt2);
@@ -390,7 +364,7 @@ void registrarEditorialMenu() {
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -400,7 +374,7 @@ void registrarEditorialMenu() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt3, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -411,7 +385,7 @@ void registrarEditorialMenu() {
 	result = sqlite3_step(stmt3);
 	if (result != SQLITE_DONE) {
 		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
-		logError("Error inserting data");
+		guardarErrorEnLog("Error inserting data");
 	}
 
 	sqlite3_finalize(stmt3);
@@ -538,7 +512,7 @@ void buscarPorAutor() {
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -548,7 +522,7 @@ void buscarPorAutor() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt4, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -575,7 +549,7 @@ void buscarPorAutor() {
 	result = sqlite3_prepare_v2(db, sql5, strlen(sql) + 1, &stmt5, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-   	 	logError("Error preparing statement");
+   	 	guardarErrorEnLog("Error preparing statement");
    	 	sqlite3_close(db);
     	return;
 	}
@@ -584,7 +558,7 @@ void buscarPorAutor() {
 	result = sqlite3_bind_int(stmt5, 1, selectedAuthor);
 	if (result != SQLITE_OK) {
   	 	printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
-    	logError("Error binding parameter");
+    	guardarErrorEnLog("Error binding parameter");
     	sqlite3_finalize(stmt5);
     	sqlite3_close(db);
     	return;
@@ -610,7 +584,7 @@ void buscarPorTitulo() {
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -621,7 +595,7 @@ void buscarPorTitulo() {
 	if (result != SQLITE_OK)
 	{
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -631,7 +605,7 @@ void buscarPorTitulo() {
 	if (result != SQLITE_OK)
 	{
 		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
-		logError("Error binding parameter");
+		guardarErrorEnLog("Error binding parameter");
 		sqlite3_finalize(stmt);
 		sqlite3_close(db);
 		return;
@@ -661,7 +635,7 @@ void buscarPorTitulo() {
 	if (result != SQLITE_OK)
 	{
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -671,7 +645,7 @@ void buscarPorTitulo() {
 	if (result != SQLITE_OK)
 	{
 		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
-		logError("Error binding parameter");
+		guardarErrorEnLog("Error binding parameter");
 		sqlite3_finalize(stmt2);
 		sqlite3_close(db);
 		return;
@@ -705,7 +679,7 @@ void buscarPorCategoria() {
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		logError("Error opening database");
+		guardarErrorEnLog("Error opening database");
 		return;
 	}
 
@@ -715,7 +689,7 @@ void buscarPorCategoria() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -742,7 +716,7 @@ void buscarPorCategoria() {
 	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -751,7 +725,7 @@ void buscarPorCategoria() {
 	result = sqlite3_bind_int(stmt2, 1, selectedCodigo);
 	if (result != SQLITE_OK) {
 		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
-		logError("Error binding parameter");
+		guardarErrorEnLog("Error binding parameter");
 		sqlite3_finalize(stmt2);
 		sqlite3_close(db);
 		return;
@@ -781,7 +755,7 @@ void buscarPorEditorial() {
 	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -808,7 +782,7 @@ void buscarPorEditorial() {
 	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
 	if (result != SQLITE_OK) {
 		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		logError("Error preparing statement");
+		guardarErrorEnLog("Error preparing statement");
 		sqlite3_close(db);
 		return;
 	}
@@ -816,7 +790,7 @@ void buscarPorEditorial() {
 	result = sqlite3_bind_int(stmt2, 1, selectedCodigo);
 	if (result != SQLITE_OK) {
 		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
-		logError("Error binding parameter");
+		guardarErrorEnLog("Error binding parameter");
 		sqlite3_finalize(stmt2);
 		sqlite3_close(db);
 		return;
@@ -1069,7 +1043,7 @@ void reiniciarPrograma(char *argv[]) {
     // Ejecutamos el programa nuevamente
     if (execv(argv[0], argumentos) == -1) {
         perror("Error al reiniciar el programa");
-		logError("Error al reiniciar el programa");
+		guardarErrorEnLog("Error al reiniciar el programa");
     }
 }
 
@@ -1115,7 +1089,7 @@ void windowSelector(int n, char *argv[]) {
 				"############################\n"
 			);
 
-			logError("Valor no válido");
+			guardarErrorEnLog("Valor no válido");
 			sleep(3);
 			system("cls");
 			reiniciarPrograma(argv);
