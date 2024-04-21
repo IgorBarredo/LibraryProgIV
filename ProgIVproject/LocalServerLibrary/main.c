@@ -6,6 +6,7 @@
 #include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 #include "db/sqlite3.h"
+#include "db/sqlManager.h"
 #include "include/autor.h"
 #include "include/categoria.h"
 #include "include/editorial.h"
@@ -242,40 +243,45 @@ void registrarAutorMenu() {
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
+	abrirDB();
+	insertarAutor(objAutor);
+	
 
-	int result;
-	sqlite3 *db;
-	result = sqlite3_open("biblioteca.db", &db);
+	/*
+		int result;
+		sqlite3 *db;
+		result = sqlite3_open("biblioteca.db", &db);
 
-	if (result != SQLITE_OK) {
-		printf("Error opening database: %s\n", sqlite3_errmsg(db));
-		guardarErrorEnLog("Error opening database");
-		return;
-	}
+		if (result != SQLITE_OK) {
+			printf("Error opening database: %s\n", sqlite3_errmsg(db));
+			guardarErrorEnLog("Error opening database");
+			return;
+		}
 
-	sqlite3_stmt *stmt;
-	char sql[] = "INSERT INTO autor (nombre_a, fecha_ncto, lugar_ncto) VALUES (?, ?, ?)";
+		sqlite3_stmt *stmt;
+		char sql[] = "INSERT INTO autor (nombre_a, fecha_ncto, lugar_ncto) VALUES (?, ?, ?)";
 
-	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
-	if (result != SQLITE_OK) {
-		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
-		guardarErrorEnLog("Error preparing statement");
+		result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+		if (result != SQLITE_OK) {
+			printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+			guardarErrorEnLog("Error preparing statement");
+			sqlite3_close(db);
+			return;
+		}
+
+		sqlite3_bind_text(stmt, 1, objAutor.name, strlen(objAutor.name), SQLITE_STATIC);
+		sqlite3_bind_text(stmt, 2, objAutor.date, strlen(objAutor.date), SQLITE_STATIC);
+		sqlite3_bind_text(stmt, 3, objAutor.place, strlen(objAutor.place), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error inserting data: %s\n", sqlite3_errmsg(db));
+			guardarErrorEnLog("Error inserting data");
+		}
+
+		sqlite3_finalize(stmt);
 		sqlite3_close(db);
-		return;
-	}
-
-	sqlite3_bind_text(stmt, 1, objAutor.name, strlen(objAutor.name), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 2, objAutor.date, strlen(objAutor.date), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 3, objAutor.place, strlen(objAutor.place), SQLITE_STATIC);
-
-	result = sqlite3_step(stmt);
-	if (result != SQLITE_DONE) {
-		printf("Error inserting data: %s\n", sqlite3_errmsg(db));
-		guardarErrorEnLog("Error inserting data");
-	}
-
-	sqlite3_finalize(stmt);
-	sqlite3_close(db);
+	*/
 
 }
 
@@ -293,10 +299,12 @@ void registrarCategoriaMenu() {
 	scanf("%s", objCategoria.name);
 	system("cls");
 
-	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION
+	// Conexion con la base de datos y manejo de errores
+	abrirDB();
+	insertarCategoria(objCategoria);
 
-	sqlite3 *db;
+
+	/*sqlite3 *db;
 	int result = sqlite3_open("biblioteca.db", &db);
 
 	if (result != SQLITE_OK) {
@@ -326,12 +334,11 @@ void registrarCategoriaMenu() {
 
 	sqlite3_finalize(stmt2);
 	sqlite3_close(db);
+	*/
 }
 
 void registrarEditorialMenu() {
 
-	/*char *name[50];
-	char *date[50];*/
 	Editorial objEditorial;
 
 	registrar();
@@ -355,7 +362,9 @@ void registrarEditorialMenu() {
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION j
 
-	sqlite3 *db;
+	insertarEditorial(objEditorial); 
+
+	/*sqlite3 *db;
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
 		printf("Error opening database: %s\n", sqlite3_errmsg(db));
@@ -385,6 +394,7 @@ void registrarEditorialMenu() {
 
 	sqlite3_finalize(stmt3);
 	sqlite3_close(db);
+	*/
 }
 
 void leerMenu() {
@@ -503,6 +513,9 @@ void leerMenu() {
 
 void buscarPorAutor() {
 	// Conectar a la base de datos
+	mostrarAutores();
+
+	/*
 	sqlite3 *db;
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
@@ -569,12 +582,15 @@ void buscarPorAutor() {
 	// Clean up
 	sqlite3_finalize(stmt5);
 	sqlite3_close(db);
+	*/
 }
 
 
 
 void buscarPorTitulo() {
 	// Conectar a la base de datos
+	
+	/*
 	sqlite3 *db;
 	int result = sqlite3_open("biblioteca.db", &db);
 	if (result != SQLITE_OK) {
@@ -666,6 +682,7 @@ void buscarPorTitulo() {
 	// Clean up
 	sqlite3_finalize(stmt2);
 	sqlite3_close(db);
+	*/
 }
 
 void buscarPorCategoria() {
