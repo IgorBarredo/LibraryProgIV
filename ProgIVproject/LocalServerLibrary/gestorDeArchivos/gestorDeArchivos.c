@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+klk
 
 void guardarErrorEnLog(char* mensajeError) {
 	time_t ahora = time(NULL);
