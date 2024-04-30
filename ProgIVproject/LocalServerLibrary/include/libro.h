@@ -12,4 +12,7 @@ typedef struct{
     Editorial *editorial;
     Categoria *categoria;
 }Libro;
+
+Libro *crear_libro(const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano);
+void destruir_libro(Libro *libro);
 #endif
