@@ -14,5 +14,9 @@ void insertarCategoria(Categoria objCategoria);
 void insertarEditorial(Editorial objEditorial);
 
 void mostrarAutores();
+void seleccionarAutor();
+void buscarLibroPorTitulo(char *titulo);
+
+
 
 #endif
