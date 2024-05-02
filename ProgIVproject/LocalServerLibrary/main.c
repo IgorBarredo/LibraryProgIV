@@ -209,37 +209,38 @@ void insertarLugarNacimiento() {
 void registrarAutorMenu() {
 	Autor objAutor;
 
-	registrar();
-	autor();
-	endMenu();
-
-	insertarNombre();
-	//FFLUSH(stdout);
+	printf(
+		"############################\n"
+		"#         Registrar        #\n"
+		"#          Autor           #\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"############################\n"
+	);
+	
 	scanf("%s", objAutor.name);
 	system("cls");
 
-	registrar();
-	autor();
-	endMenu();
-
-	insertarFechaNacimiento();
-	//FFLUSH(stdout);
+	printf(
+		"############################\n"
+		"#      Inserte fecha       #\n"
+		"#      de nacimiento       #\n"
+		"############################\n"
+	);
 	scanf("%s", objAutor.date);
 	system("cls");
 
-	registrar();
-	autor();
-	endMenu();
-
-	insertarLugarNacimiento();
-	//FFLUSH(stdout);
+	printf(
+		"############################\n"
+		"#      Inserte nombre      #\n"
+		"# del lugar de nacimiento  #\n"
+		"############################\n"
+	);
 	scanf("%s", objAutor.place);
 	system("cls");
 
-	printf("Nombre: %s\n", objAutor.name);
+	//Conexion con la base de datos
 
-	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION
 	abrirDB();
 	insertarAutor(objAutor);
 	
@@ -250,13 +251,16 @@ void registrarAutorMenu() {
 void registrarCategoriaMenu() {
 	
 	Categoria objCategoria;	
-	
-	registrar();
-	categoria();
-	endMenu();
+	printf(
+		"############################\n"
+		"#         Registrar        #\n"
+		"#         Categoria        #\n"
+		"############################\n"
+		"#         Inserte nombre   #\n"
+		"#        de la categoria   #\n"
+		"############################\n"
+	);
 
-	insertarNombre();
-	//FFLUSH(stdout);
 	scanf("%s", objCategoria.name);
 	system("cls");
 
@@ -271,21 +275,25 @@ void registrarEditorialMenu() {
 
 	Editorial objEditorial;
 
-	registrar();
-	editorial();
-	endMenu();
-
-	insertarNombre();
-	//FFLUSH(stdout);
+	printf(
+		"############################\n"
+		"#         Registrar        #\n"
+		"#         Editorial        #\n"
+		"############################\n"
+		"#         Inserte nombre   #\n"
+		"#        de la categoria   #\n"
+		"############################\n"
+	);
 	scanf("%s", objEditorial.nombre);
 	system("cls");
 
-	registrar();
-	editorial();
-	endMenu();
+	printf(
+		"############################\n"
+		"#      Inserte fecha      #\n"
+		"#      de  de nacimiento  #\n"
+		"############################\n"
+	);
 
-	insertarFechaNacimiento();
-	//FFLUSH(stdout);
 	scanf("%s", objEditorial.fecha);
 	system("cls");
 
@@ -331,25 +339,21 @@ void leerMenu() {
             printf("Opción no válida\n");
     }
 
-	
-
-	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION
-
-
-	//free(name);
-	//free(title);
-	//free(date);
-	//free(place);
-	//free(category);
-	//free(edit);*/
 
 }
 
 void buscarPorAutor() {
-	// Conectar a la base de datos
+	// Conexion a la base de datos
+	printf("Autores disponibles:\n");
+
 	mostrarAutores();
-	seleccionarAutor();
+
+	int selectedAuthor;
+	printf("Escriba el codigo del autor que desea seleccionar: ");
+	scanf("%d", &selectedAuthor);
+	fflush(stdout);
+
+	seleccionarAutor(selectedAuthor);
 
 	
 }

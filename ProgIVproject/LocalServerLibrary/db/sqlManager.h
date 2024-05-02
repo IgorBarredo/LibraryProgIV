@@ -2,9 +2,9 @@
 #define sqlManager_h
 
 #include "sqlite3.h"
-#include "Autor.h"
-#include "Categoria.h"
-#include "Editorial.h"
+#include "../include/autor.h"
+#include "../include/categoria.h"
+#include "../include/editorial.h"
 
 
 sqlite3* abrirDB();
@@ -14,7 +14,7 @@ void insertarCategoria(Categoria objCategoria);
 void insertarEditorial(Editorial objEditorial);
 
 void mostrarAutores();
-void seleccionarAutor();
+void seleccionarAutor(int seleccion);
 void buscarLibroPorTitulo(char *titulo);
 
 
