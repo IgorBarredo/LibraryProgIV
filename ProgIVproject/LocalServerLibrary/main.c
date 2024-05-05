@@ -504,87 +504,101 @@ void buscarPorEditorial() {
 
 void subirMenu() {
 
-	char *name[50];
-	char *title[50];
-	char *date[50];
-	char *place[50];
-	char *category[50];
-	char *edit[50];
-	char *content[200];
-
-	subir();
-	libro();
-	endMenu();
-
-	introducir();
-	autor();
-	endMenuShorter();
-	insertarNombre();
-	scanf("%s", name);
+	Libro objLibro;
+	printf(
+		"############################\n"
+		"#--------------------------#\n"
+		"#           Subir          #\n"
+		"#          Libro           #\n"
+		"############################\n"
+	);
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#          Titulo          #\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"############################\n"
+	);
+	scanf("%s", objLibro.title);
 	system("cls");
 
-	subir();
-	libro();
-	endMenu();
-
-	introducir();
-	fecha();
-	endMenuShorter();
-	insertarFechaNacimiento();
-	//FFLUSH(stdout);
-	scanf("%s", date);
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#        cantidad de       #\n"
+		"#         autores          #\n"
+		"############################\n"
+		"# Inserte numero		    #\n"
+		"############################\n"
+	);
+	int cant;
+	scanf("%d", cant);
+	cant = objLibro.cantAut;
 	system("cls");
 
-	subir();
-	libro();
-	endMenu();
+	for (int i = 0; i < cant; i++) {
+		printf(
+			"############################\n"
+			"#        Introducir        #\n"
+			"#          Autor           #\n"
+			"############################\n"
+			"# Inserte nombre completo  #\n"
+			"############################\n"
+		);
+		scanf("%s", objLibro.autores[i]);
+		system("cls");
+	};
 
-	introducir();
-	titulo();
-	endMenuShorter();
-	insertarNombre();
-	//FFLUSH(stdout);
-	scanf("%s", title);
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#          Fecha           #\n"
+		"############################\n"
+		"#      Inserte fecha       #\n"
+		"#      de publicacion      #\n"
+		"############################\n"
+	);
+	scanf("%s", objLibro.date);
 	system("cls");
 
-	subir();
-	libro();
-	endMenu();
-
-	introducir();
-	categoria();
-	endMenuShorter();
-	insertarNombre();
-	//FFLUSH(stdout);
-	scanf("%s", category);
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#          Editorial       #\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"############################\n"
+	);
+	
+	scanf("%s", objLibro.editorial);
 	system("cls");
 
-	subir();
-	libro();
-	endMenu();
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#        Categoria         #\n"
+		"############################\n"
+		"# Inserte nombre completo  #\n"
+		"############################\n"
+	);
+	scanf("%s", objLibro.categoria);
 
-	introducir();
-	editorial();
-	endMenuShorter();
-	insertarNombre();
-	//FFLUSH(stdout);
-	scanf("%s", edit);
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#        Contenido         #\n"
+		"############################\n"
+		"# Inserte texto            #\n"
+		"############################\n"
+	);
+
+	scanf("%s", objLibro.content);
 	system("cls");
-
-	subir();
-	libro();
-	endMenu();
-
-	introducir();
-	contenido();
-	endMenuShorter();
-	insertarTexto();
-	//FFLUSH(stdout);
-	scanf("%s", content);
-	int size = sizeof(content);									// Sacamos la cantidad de caracteres
+	int size = sizeof(objLibro.content);									// Sacamos la cantidad de caracteres
 	if (size > 200) {											// que hemos tecleado en el input
         char *newContent = malloc(size * sizeof(char));			// y las metemos en una nueva variable
-		strcpy(newContent, content);
+		strcpy(newContent, objLibro.content);
     }
 	system("cls");
 
@@ -611,10 +625,14 @@ void modificarMenu() {
 	char *category[50];
 	char *edit[50];
 
-	modificar();
-	libro();
-	endMenu();
-
+	printf(
+		"############################\n"
+		"#--------------------------#\n"
+		"#         Modificar        #\n"
+		"#          Libro           #\n"
+		"############################\n"
+	);
+	
 	buscarPor();
 	autor();
 	endMenuShorter();

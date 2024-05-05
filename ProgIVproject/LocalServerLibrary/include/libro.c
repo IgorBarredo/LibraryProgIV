@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "libro.h"
 
-Libro *crear_libro(const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano) {
+Libro *crear_libro(char* isbn ,const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano, Categoria *categoria, char* content) {
     Libro *libro = (Libro *)malloc(sizeof(Libro));
     if (libro == NULL) {
         return NULL;
@@ -13,6 +13,8 @@ Libro *crear_libro(const char *titulo, Autor **autores, int cantidad_autores, in
     libro->cantPag = cantidad_paginas;
     libro->editorial = editorial;
     libro->date = ano;
+    libro->categoria = categoria;
+    libro->content = content;
 
     return libro;
 }
