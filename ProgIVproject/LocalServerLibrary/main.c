@@ -13,7 +13,8 @@
 #include "include/libro.h"
 #include <time.h>
 #include "gestorDeArchivos/gestorDeArchivos.h"
-#include "menu.h"
+#include "src/menu.h"
+#include "src/menu.c"
 
 /*
 void registrarAutorMenu() {
@@ -510,87 +511,17 @@ void modificarMenu() {
 	//free(edit);
 
 }
-
-
-int mainWindowMenu() {
-
-	int input;
-
-	
-	//FFLUSH(stdout);
-
-	char cadena[100]; // Declarar una cadena de caracteres
-
-	scanf("%d", &cadena);
-
-    if (cadena[0] != '\0') { // Verificar si la cadena no está vacía
-
-        input = cadena[0]; // Asignar el primer carácter a la variable primer_caracter
-
-    }
-
-	system("cls");
-	return input;
-
-}
-
-
-
-void windowSelector(int n, char *argv[]) {
-
-	switch (n) {
-	    case 1:
-	      leerMenu();
-	      break;
-
-	    case 2:
-	      subirMenu();
-	      break;
-
-	    case 3:
-		  modificarMenu();
-		  break;
-
-		case 4:
-		  registrarAutorMenu();
-		  break;
-
-	    case 5:
-		  registrarEditorialMenu();
-		  break;
-
-		case 6:
-		  registrarCategoriaMenu();
-		  break;
-
-		case 7:
-		  exit(0);
-		  break;
-
-	    default:
-			// default statements
-			printf(
-				"############################\n" 
-				"#//////////////////////////#\n" 
-				"#   INSERTE VALOR VALIDO   #\n" 
-				"#//////////////////////////#\n" 
-				"############################\n"
-			);
-
-			guardarErrorEnLog("Valor no válido");
-			sleep(3);
-			system("cls");
-	
-	}
-
-}
 */
 
 // main function
-int main(int argc, char *argv[]) {
-    while (1) {	
-		printf("Hola mundo\n");
-       // windowSelector(mainWindowMenu(), argv);
-    }
+int main() {
+	printf("Bienvenido al servidor local de la biblioteca\n");
+	while (1){
+	sleep(2);
+    imprimirMenuPrincipal();
+	int opcion = seleccionarOpcionMenu();
+	imprimirSubmenus(opcion);
+	}
+	
     return 0;
 }

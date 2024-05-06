@@ -1,7 +1,7 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-int mainWindowMenu();
+int seleccionarOpcionMenu();
 void registrarAutorMenu();
 void registrarCategoriaMenu();
 void registrarEditorialMenu();
