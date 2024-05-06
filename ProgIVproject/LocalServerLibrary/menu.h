@@ -1,13 +1,15 @@
 #ifndef MENU_H
 #define MENU_H
 
-int imprimirMenuPrincipal();
-void imprimirMenuDescargar();
-void imprimirMenuSubir();
-void imprimirMenuModificar();
-void imprimirMenuRegistrarAutor();
-void imprimirMenuRegistrarCategoria();
-void imprimirMenuRegistrarEditorial();
-void empezarPrograma();
+
+void imprimirMenuPrincipal();
+void gestionarSubmenus(int n);
+int seleccionarOpcionMenu();
+void MenuDescargar();
+void MenuSubir();
+void MenuModificar();
+void MenuRegistrarAutor();
+void MenuRegistrarCategoria();
+void MenuRegistrarEditorial();
 
 #endif // MENU_H

@@ -13,52 +13,12 @@
 #include "include/libro.h"
 #include <time.h>
 #include "gestorDeArchivos/gestorDeArchivos.h"
-#include "src/menu.h"
-#include "src/menu.c"
+#include "menu.c"
+
+
+
 
 /*
-void registrarAutorMenu() {
-	Autor objAutor;
-
-	printf(
-		"############################\n"
-		"#         Registrar        #\n"
-		"#          Autor           #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	
-	scanf("%s", objAutor.name);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#      Inserte fecha       #\n"
-		"#      de nacimiento       #\n"
-		"############################\n"
-	);
-	scanf("%s", objAutor.date);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#      Inserte nombre      #\n"
-		"# del lugar de nacimiento  #\n"
-		"############################\n"
-	);
-	scanf("%s", objAutor.place);
-	system("cls");
-
-	//Conexion con la base de datos
-
-	abrirDB();
-	insertarAutor(objAutor);
-	
-
-}
-
-
 void registrarCategoriaMenu() {
 	
 	Categoria objCategoria;	
@@ -513,14 +473,13 @@ void modificarMenu() {
 }
 */
 
-// main function
 int main() {
 	printf("Bienvenido al servidor local de la biblioteca\n");
 	while (1){
 	sleep(2);
     imprimirMenuPrincipal();
 	int opcion = seleccionarOpcionMenu();
-	imprimirSubmenus(opcion);
+	gestionarSubmenus(opcion);
 	}
 	
     return 0;
