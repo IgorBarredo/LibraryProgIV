@@ -13,199 +13,9 @@
 #include "include/libro.h"
 #include <time.h>
 #include "gestorDeArchivos/gestorDeArchivos.h"
+#include "menu.h"
 
-void autor() {
-
-	printf(
-		"#          Autor           #\n"
-	);
-
-}
-
-
-void fecha() {
-
-	printf(
-		"#          Fecha           #\n"
-	);
-
-}
-
-
-void contenido() {
-
-	printf(
-		"#        Contenido         #\n"
-	);
-
-}
-
-
-void libro() {
-
-	printf(
-		"#          Libro           #\n"
-	);
-
-}
-
-
-void editorial() {
-
-	printf(
-		"#        Editorial         #\n"
-	);
-
-}
-
-
-void titulo() {
-
-	printf(
-		"#          Titulo          #\n"
-	);
-
-}
-
-
-void categoria() {
-
-	printf(
-		"#        Categoria         #\n"
-	);
-
-}
-
-
-void endMenu() {
-
-	printf(
-		"#--------------------------#\n"
-	);
-
-}
-
-
-void endMenuShorter() {
-
-	printf(
-		"############################\n"
-	);
-
-}
-
-
-void registrar() {
-
-	printf(
-		"############################\n"
-		"#--------------------------#\n"
-		"#         Registrar        #\n"
-	);
-
-}
-
-
-void subir() {
-
-	printf(
-		"############################\n"
-		"#--------------------------#\n"
-		"#           Subir          #\n"
-	);
-
-}
-
-
-void modificar() {
-
-	printf(
-		"############################\n"
-		"#--------------------------#\n"
-		"#         Modificar        #\n"
-	);
-
-}
-
-
-void leer() {
-
-	printf(
-		"############################\n"
-		"#--------------------------#\n"
-		"#           Leer           #\n"
-	);
-
-}
-
-
-void buscarPor() {
-
-	printf(
-		"############################\n"
-		"#        Buscar Por        #\n"
-	);
-
-}
-
-
-void introducir() {
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-	);
-
-}
-
-
-
-void insertarNombre() {
-
-	printf(
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-
-}
-
-
-void insertarTexto() {
-
-	printf(
-		"############################\n"
-		"#       Inserte texto      #\n"
-		"############################\n"
-	);
-
-}
-
-
-void insertarFechaNacimiento() {
-
-	printf(
-		"############################\n"
-		"#      Inserte fecha       #\n"
-		"#      de nacimiento       #\n"
-		"############################\n"
-	);
-
-}
-
-
-void insertarLugarNacimiento() {
-
-	printf(
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"# del lugar de nacimiento  #\n"
-		"############################\n"
-	);
-
-}
-
-
+/*
 void registrarAutorMenu() {
 	Autor objAutor;
 
@@ -706,26 +516,7 @@ int mainWindowMenu() {
 
 	int input;
 
-	printf(
-		"\n############################\n" 
-		"#//////////////////////////#\n"
-		"#     	  BIBLIOTECA        #\n" 
-		"#//////////////////////////#\n" 
-		"############################\n" 
-		"#                          #\n" 
-		"#  1. Leer Libro           #\n" 
-		"#  2. Subir Libro          #\n" 
-		"#  3. Modificar Libro      #\n" 
-		"#  4. Registrar Autor      #\n" 
-		"#  5. Registrar Editorial  #\n" 
-		"#  6. Registrar Categoria  #\n" 
-		"#  7. Salir                #\n" 
-		"#                          #\n" 
-		"############################\n" 
-		"#      Inserte numero      #\n" 
-		"############################\n"
-	);
-
+	
 	//FFLUSH(stdout);
 
 	char cadena[100]; // Declarar una cadena de caracteres
@@ -743,20 +534,6 @@ int mainWindowMenu() {
 
 }
 
-
-void reiniciarPrograma(char *argv[]) {
-    // Lógica para reiniciar el programa
-    printf("Reiniciando el programa...\n");
-
-    // Creamos un arreglo de argumentos para la función execv()
-    const char *argumentos[] = {argv[0], NULL};
-
-    // Ejecutamos el programa nuevamente
-    if (execv(argv[0], argumentos) == -1) {
-        perror("Error al reiniciar el programa");
-		guardarErrorEnLog("Error al reiniciar el programa");
-    }
-}
 
 
 void windowSelector(int n, char *argv[]) {
@@ -803,17 +580,17 @@ void windowSelector(int n, char *argv[]) {
 			guardarErrorEnLog("Valor no válido");
 			sleep(3);
 			system("cls");
-			reiniciarPrograma(argv);
 	
 	}
 
 }
-
+*/
 
 // main function
 int main(int argc, char *argv[]) {
-    while (1) {
-        windowSelector(mainWindowMenu(), argv);
+    while (1) {	
+		printf("Hola mundo\n");
+       // windowSelector(mainWindowMenu(), argv);
     }
     return 0;
 }
