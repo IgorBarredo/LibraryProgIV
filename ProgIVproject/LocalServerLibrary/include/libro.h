@@ -11,6 +11,7 @@ typedef struct{
     int cantPag;
     Editorial *editorial;
     Categoria *categoria;
+    char* content;
 }Libro;
 
 Libro *crear_libro(const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano);
