@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "main.h"
 #define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
 #include "db/sqlite3.h"
 #include "db/sqlManager.h"
@@ -17,64 +16,7 @@
 
 
 
-
 /*
-void registrarCategoriaMenu() {
-	
-	Categoria objCategoria;	
-	printf(
-		"############################\n"
-		"#         Registrar        #\n"
-		"#         Categoria        #\n"
-		"############################\n"
-		"#         Inserte nombre   #\n"
-		"#        de la categoria   #\n"
-		"############################\n"
-	);
-
-	scanf("%s", objCategoria.name);
-	system("cls");
-
-	// Conexion con la base de datos y manejo de errores
-	abrirDB();
-	insertarCategoria(objCategoria);
-
-
-}
-
-void registrarEditorialMenu() {
-
-	Editorial objEditorial;
-
-	printf(
-		"############################\n"
-		"#         Registrar        #\n"
-		"#         Editorial        #\n"
-		"############################\n"
-		"#         Inserte nombre   #\n"
-		"#        de la categoria   #\n"
-		"############################\n"
-	);
-	scanf("%s", objEditorial.nombre);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#      Inserte fecha      #\n"
-		"#      de  de nacimiento  #\n"
-		"############################\n"
-	);
-
-	scanf("%s", objEditorial.fecha);
-	system("cls");
-
-	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION j
-
-	insertarEditorial(objEditorial); 
-
-}
-
 void leerMenu() {
 
 
@@ -473,14 +415,7 @@ void modificarMenu() {
 }
 */
 
-int main() {
-	printf("Bienvenido al servidor local de la biblioteca\n");
-	cargando();
-	while (1){
-	sleep(1);
-	system("cls");
-    imprimirMenuPrincipal();
-	gestionarSubmenus(seleccionarOpcionMenu());
-	}
+int main(void) {
+empezarMenu(); // Llamamos a la función que inicia el menú
     return 0;
 }
