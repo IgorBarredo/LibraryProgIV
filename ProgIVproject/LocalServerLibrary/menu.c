@@ -30,6 +30,7 @@ printf(
 int seleccionarOpcionMenu() {
 	int input;
 	scanf("%d", &input);
+	fflush(stdin);
 	return input;
 
 }
@@ -64,6 +65,7 @@ void gestionarSubmenus(int n) {
 		  break;
 
 		case 7:
+		printf("Saliendo...\n");
 		  exit(0);
 		  break;
 
@@ -74,6 +76,8 @@ void gestionarSubmenus(int n) {
 				"#   INSERTE VALOR VALIDO   #\n"  
 				"############################\n"
 			);
+			sleep(1);
+			
 
 	
 	
@@ -157,4 +161,12 @@ printf("Registrar Categoria\n");
 void MenuRegistrarEditorial(){
 system("cls");
 printf("Registrar Editorial\n");
+}
+
+void cargando(){
+	printf("Cargando.");
+	sleep(1);
+	printf(".");
+	sleep(1);
+	printf(".\n");
 }

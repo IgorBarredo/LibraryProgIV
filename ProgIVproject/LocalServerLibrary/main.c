@@ -475,15 +475,12 @@ void modificarMenu() {
 
 int main() {
 	printf("Bienvenido al servidor local de la biblioteca\n");
-	int opcion = 0;
-	while (opcion != 7){
-	sleep(2);
+	cargando();
+	while (1){
+	sleep(1);
+	system("cls");
     imprimirMenuPrincipal();
-	int opcion = seleccionarOpcionMenu();
-	gestionarSubmenus(opcion);
+	gestionarSubmenus(seleccionarOpcionMenu());
 	}
-Autor *autor = crear_autor("Juan", "01/01/2000", "Mexico");
-	imprimir_autor(*autor);
-	
     return 0;
 }
