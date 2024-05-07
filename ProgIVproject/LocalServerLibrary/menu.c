@@ -1,7 +1,7 @@
 #include "menu.h"
 #include <stdio.h> 
 #include <stdlib.h>
-#include "include/autor.h"
+#include "include/autor.c"
 
 
 void imprimirMenuPrincipal(){
@@ -135,6 +135,8 @@ system("cls");
 	);
 	scanf("%s", objAutor.place);
 	system("cls");
+
+	imprimir_autor(objAutor);
 
 	//Conexion con la base de datos
 

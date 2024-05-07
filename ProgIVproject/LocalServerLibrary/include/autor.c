@@ -21,3 +21,23 @@ void destruir_autor(Autor *autor) {
     free(autor->place);
     free(autor);
 }
+
+void imprimir_autor(Autor autor){
+    printf("%s;%s;%s\n", autor.name, autor.date, autor.place);
+
+}
+
+void nombreAutor(Autor *autor, char *nombre){
+    strdup(autor->name);
+    strcpy(nombre, autor->name);
+}
+
+void fechaNacimiento(Autor *autor, char *fecha){
+    strdup(autor->date);
+    strcpy(fecha, autor->date);
+}
+
+void lugarNacimiento(Autor *autor, char *lugar){
+    strdup(autor->place);
+    strcpy(lugar, autor->place);
+}
