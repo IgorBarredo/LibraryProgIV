@@ -1,60 +1,12 @@
 // Local Server in C
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-#define MAX_PATH_LENGTH 4096 // Un tamaño suficientemente grande para almacenar la ruta
-#include "db/sqlite3.h"
-#include "db/sqlManager.h"
-#include "include/autor.h"
-#include "include/categoria.h"
-#include "include/editorial.h"
-#include "include/libro.h"
-#include <time.h>
-#include "gestorDeArchivos/gestorDeArchivos.h"
 #include "menu.c"
 
 
-
 /*
-void leerMenu() {
-
-
-	int opcion;
-
-	printf("############################\n");
-	printf("#--------------------------#\n");
-    printf("Buscar por:\n");
-    printf("1) Autor\n");
-    printf("2) Titulo\n");
-    printf("3) Categoria\n");
-    printf("4) Editorial\n");
-	printf("#--------------------------#\n");
-	printf("############################\n");
-    printf("Ingrese el numero correspondiente a la opcion deseada: ");
-	fflush(stdout);
-    scanf("%d", &opcion);
-	
-	switch (opcion) {
-        case 1:
-			buscarPorAutor();
-            break;
-        case 2:
-            buscarPorTitulo();
-            break;
-        case 3:
-            buscarPorCategoria();
-            break;
-        case 4:
-            buscarPorEditorial();
-            break;
-        default:
-            printf("Opción no válida\n");
-    }
-
-
-}
-
 void buscarPorAutor() {
 	// Conexion a la base de datos
 	printf("Autores disponibles:\n");
@@ -214,121 +166,10 @@ void buscarPorEditorial() {
 	sqlite3_finalize(stmt2);
 	sqlite3_close(db);
 }
-
-void subirMenu() {
-
-	Libro objLibro;
-	printf(
-		"############################\n"
-		"#--------------------------#\n"
-		"#           Subir          #\n"
-		"#          Libro           #\n"
-		"############################\n"
-	);
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#          Titulo          #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	scanf("%s", objLibro.title);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#        cantidad de       #\n"
-		"#         autores          #\n"
-		"############################\n"
-		"# Inserte numero		    #\n"
-		"############################\n"
-	);
-	int cant;
-	scanf("%d", cant);
-	cant = objLibro.cantAut;
-	system("cls");
-
-	for (int i = 0; i < cant; i++) {
-		printf(
-			"############################\n"
-			"#        Introducir        #\n"
-			"#          Autor           #\n"
-			"############################\n"
-			"# Inserte nombre completo  #\n"
-			"############################\n"
-		);
-		scanf("%s", objLibro.autores[i]);
-		system("cls");
-	};
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#          Fecha           #\n"
-		"############################\n"
-		"#      Inserte fecha       #\n"
-		"#      de publicacion      #\n"
-		"############################\n"
-	);
-	scanf("%s", objLibro.date);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#          Editorial       #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	
-	scanf("%s", objLibro.editorial);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#        Categoria         #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	scanf("%s", objLibro.categoria);
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#        Contenido         #\n"
-		"############################\n"
-		"# Inserte texto            #\n"
-		"############################\n"
-	);
-
-	scanf("%s", objLibro.content);
-	system("cls");
-	int size = sizeof(objLibro.content);									// Sacamos la cantidad de caracteres
-	if (size > 200) {											// que hemos tecleado en el input
-        char *newContent = malloc(size * sizeof(char));			// y las metemos en una nueva variable
-		strcpy(newContent, objLibro.content);
-    }
-	system("cls");
-
-	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
-	// CONNECT WITH THE REST OF THE APLICATION
-
-	//free(name);
-	//free(title);
-	//free(date);
-	//free(place);
-	//free(category);
-	//free(edit);
-	//free(content);
-
-}
+*/
 
 
+/*
 void modificarMenu() {
 
 	char *name[50];
