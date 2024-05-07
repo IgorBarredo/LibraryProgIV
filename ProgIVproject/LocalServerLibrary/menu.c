@@ -2,6 +2,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include "include/autor.c"
+#include "include/autor.h"
 
 
 void imprimirMenuPrincipal(){
@@ -107,8 +108,9 @@ printf("Modificar Libro\n");
 void MenuRegistrarAutor(){
 system("cls");
 
-
-	Autor objAutor;
+	char name[50];
+	char date[50];
+	char place[50];
 
 	printf(
 		"############################\n"
@@ -119,7 +121,7 @@ system("cls");
 		"############################\n"
 	);
 	
-	scanf("%s", objAutor.name);
+	scanf("%s",name);
 	system("cls");
 
 	printf(
@@ -128,7 +130,7 @@ system("cls");
 		"#      de nacimiento       #\n"
 		"############################\n"
 	);
-	scanf("%s", objAutor.date);
+	scanf("%s", date);
 	system("cls");
 
 	printf(
@@ -137,11 +139,12 @@ system("cls");
 		"# del lugar de nacimiento  #\n"
 		"############################\n"
 	);
-	scanf("%s", objAutor.place);
+	scanf("%s", place);
+
 	system("cls");
-
-	imprimir_autor(objAutor);
-
+	Autor* objAutor;
+	objAutor = crear_autor(name, date, place);
+	imprimir_autor(*objAutor);
 	//Conexion con la base de datos
 
 	//abrirDB();
