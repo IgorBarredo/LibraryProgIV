@@ -479,11 +479,18 @@ int main() {
 	while (opcion != 7){
 	sleep(2);
     imprimirMenuPrincipal();
-	int opcion = seleccionarOpcionMenu();
+	opcion = seleccionarOpcionMenu();
+	if(opcion != 7){
 	gestionarSubmenus(opcion);
+	} else if(opcion == 7){
+		printf("Saliendooooo...\n");
+		break;
 	}
+	}
+
 Autor *autor = crear_autor("Juan", "01/01/2000", "Mexico");
 	imprimir_autor(*autor);
+	fflush(stdout);
 	
     return 0;
 }
