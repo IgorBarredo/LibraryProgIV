@@ -20,3 +20,7 @@ void destruir_editorial(Editorial *editorial) {
     free(editorial);
 }
 
+void imprimirEditorial(Editorial editorial){
+    printf("%s;%s\n", editorial.nombre, editorial.fecha);
+}
+

@@ -7,4 +7,5 @@ typedef struct {
 
 Editorial *crear_editorial(const char *nombre, const char *fecha);
 void destruir_editorial(Editorial *editorial);
+void imprimirEditorial(Editorial editorial);
 #endif

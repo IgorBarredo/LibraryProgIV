@@ -21,3 +21,8 @@ void destruirCategoria(Categoria *categoria) {
         free(categoria); // Liberar la memoria para la estructura de categoría
     }
 }
+
+void imprimirCategoria(Categoria *categoria) {
+        printf("Categoria: %s\n", categoria->name);
+    
+}
