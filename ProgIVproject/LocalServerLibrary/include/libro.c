@@ -1,25 +1,25 @@
 #include <stdlib.h>
 #include "libro.h"
 
-Libro *crear_libro(char* isbn ,const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano, Categoria *categoria, char* content) {
+Libro *crear_libro(char* isbn ,const char *titulo, Autor *autor, Editorial *editorial, Categoria *categoria, char* contenido, char* fechaCreacion) {
     Libro *libro = (Libro *)malloc(sizeof(Libro));
     if (libro == NULL) {
         return NULL;
     }
 
-    libro->title = strdup(titulo);
-    libro->autores = autores;
-    libro->cantAut = cantidad_autores;
-    libro->cantPag = cantidad_paginas;
+    libro->titulo = strdup(titulo);
+    libro->autor = autor;
     libro->editorial = editorial;
-    libro->date = ano;
+    libro->fechaCreacion = fechaCreacion;
     libro->categoria = categoria;
-    libro->content = content;
+    libro->contenido = contenido;
+    libro->isbn = isbn;
+
 
     return libro;
 }
 
 void destruir_libro(Libro *libro) {
-    free(libro->title);
+    free(libro->titulo);
     free(libro);
 }

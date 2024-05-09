@@ -3,17 +3,17 @@
 #include "autor.h"
 #include "editorial.h"
 #include "categoria.h"
+
 typedef struct{
-	char *title;
-	char *date;
-    Autor **autores;
-    int cantAut;
-    int cantPag;
+    char  *isbn;
+	char *titulo;
+	char *fechaCreacion;
+    Autor *autor;
     Editorial *editorial;
     Categoria *categoria;
-    char* content;
+    char* contenido;
 }Libro;
 
-Libro *crear_libro(const char *titulo, Autor **autores, int cantidad_autores, int cantidad_paginas, Editorial *editorial, int ano);
+Libro *crear_libro(char* isbn ,const char *titulo, Autor *autor, Editorial *editorial, Categoria *categoria, char* contenido, char* fechaCreacion);
 void destruir_libro(Libro *libro);
 #endif

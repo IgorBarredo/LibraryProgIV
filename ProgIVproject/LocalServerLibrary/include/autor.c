@@ -27,17 +27,3 @@ void imprimir_autor(Autor autor){
 
 }
 
-/* void nombreAutor(Autor *autor, char *nombre){ 
-    strdup(autor->name);
-    strcpy(nombre, autor->name);
-}
-
-void fechaNacimiento(Autor *autor, char *fecha){
-    strdup(autor->date);
-    strcpy(fecha, autor->date);
-}
-
-void lugarNacimiento(Autor *autor, char *lugar){
-    strdup(autor->place);
-    strcpy(lugar, autor->place);
-} */

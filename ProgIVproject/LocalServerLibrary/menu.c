@@ -7,6 +7,8 @@
 #include "include/categoria.h"
 #include "include/editorial.c"
 #include "include/editorial.h"
+#include "include/libro.c"
+#include "include/libro.h"
 
 
 void imprimirMenuPrincipal(){ 		//Funcion para imprimir el menu principal
@@ -74,7 +76,6 @@ void gestionarSubmenus(int n) { //Funcion para gestionar los submenus
 		case 7:
 		printf("Saliendo...\n");
 		  exit(0);
-		  printf("Saliendo...\n");
 		  break;
 
 	    default:
@@ -133,8 +134,24 @@ system("cls");
 
 
 void MenuSubir(){ //Funcion para subir un libro
-/* system("cls");
+system("cls");
+printf("Recuerde que para subir un libro, es necesario\nhaber registrado previamente el autor, la editorial y la categoria\n");
+char isbn[50];
 char titulo[50]; 
+char fecha[5];
+char contenido[5000];
+
+
+	printf(
+		"############################\n"
+		"#        Introducir        #\n"
+		"#          ISBN            #\n"
+		"############################\n"
+		"#     Inserte el ISBN      #\n"
+		"############################\n"
+	);
+	scanf("%s", isbn);
+
 
 	printf(
 		"############################\n"
@@ -144,70 +161,21 @@ char titulo[50];
 		"# Inserte nombre completo  #\n"
 		"############################\n"
 	);
-	scanf("%s", objLibro.title);
+	scanf("%s", titulo);
+
 	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#        cantidad de       #\n"
-		"#         autores          #\n"
-		"############################\n"
-		"# Inserte numero		    #\n"
-		"############################\n"
-	);
-	int cant;
-	scanf("%d", cant);
-	cant = objLibro.cantAut;
-	system("cls");
-
-	for (int i = 0; i < cant; i++) {
-		printf(
-			"############################\n"
-			"#        Introducir        #\n"
-			"#          Autor           #\n"
-			"############################\n"
-			"# Inserte nombre completo  #\n"
-			"############################\n"
-		);
-		scanf("%s", objLibro.autores[i]);
-		system("cls");
-	};
-
 	printf(
 		"############################\n"
 		"#        Introducir        #\n"
 		"#          Fecha           #\n"
 		"############################\n"
-		"#      Inserte fecha       #\n"
+		"#      Inserte anyo        #\n"
 		"#      de publicacion      #\n"
 		"############################\n"
 	);
-	scanf("%s", objLibro.date);
+	scanf("%s", fecha);
+
 	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#          Editorial       #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	
-	scanf("%s", objLibro.editorial);
-	system("cls");
-
-	printf(
-		"############################\n"
-		"#        Introducir        #\n"
-		"#        Categoria         #\n"
-		"############################\n"
-		"# Inserte nombre completo  #\n"
-		"############################\n"
-	);
-	scanf("%s", objLibro.categoria);
-
 	printf(
 		"############################\n"
 		"#        Introducir        #\n"
@@ -216,16 +184,94 @@ char titulo[50];
 		"#      Inserte texto       #\n"
 		"############################\n"
 	);
+	scanf("%s", contenido);
 
-	scanf("%s", objLibro.content);
 	system("cls");
-	int size = sizeof(objLibro.content);									// Sacamos la cantidad de caracteres
-	if (size > 200) {											// que hemos tecleado en el input
-        char *newContent = malloc(size * sizeof(char));			// y las metemos en una nueva variable
-		strcpy(newContent, objLibro.content);
-    }
-	system("cls"); */
+	
 
+	Libro* objLibro;
+
+	//crear_libro(isbn, titulo, fecha, contenido);
+
+	//abrirDB();
+	//insertarLibro(objLibro);
+
+}
+
+
+void MenuModificar(){ 		//Funcion para modificar un libro
+/* system("cls");
+
+	char *name[50];
+	char *title[50];
+	char *date[50];
+	char *place[50];
+	char *category[50];
+	char *edit[50];
+
+	printf(
+		"############################\n"
+		"#--------------------------#\n"
+		"#         Modificar        #\n"
+		"#          Libro           #\n"
+		"############################\n"
+	);
+	
+	buscarPor();
+	autor();
+	endMenuShorter();
+	insertarNombre();
+	//FFLUSH(stdout);
+	scanf("%s", name);
+	system("cls");
+
+	modificar();
+	libro();
+	endMenu();
+
+	buscarPor();
+	fecha();
+	endMenuShorter();
+	insertarFechaNacimiento();
+	//FFLUSH(stdout);
+	scanf("%s", date);
+	system("cls");
+
+	modificar();
+	libro();
+	endMenu();
+
+	buscarPor();
+	titulo();
+	endMenuShorter();
+	insertarNombre();
+	//FFLUSH(stdout);
+	scanf("%s", title);
+	system("cls");
+
+	modificar();
+	libro();
+	endMenu();
+
+	buscarPor();
+	categoria();
+	endMenuShorter();
+	insertarNombre();
+	//FFLUSH(stdout);
+	scanf("%s", category);
+	system("cls");
+
+	modificar();
+	libro();
+	endMenu();
+
+	buscarPor();
+	editorial();
+	endMenuShorter();
+	insertarNombre();
+	//FFLUSH(stdout);
+	scanf("%s", edit);
+	system("cls");
 
 	// PUT THE NEW DATA IN DATABASE AND MANAGE THE ERRORS
 	// CONNECT WITH THE REST OF THE APLICATION
@@ -236,14 +282,7 @@ char titulo[50];
 	//free(place);
 	//free(category);
 	//free(edit);
-	//free(content);
-
-}
-
-
-void MenuModificar(){ 		//Funcion para modificar un libro
-system("cls");
-printf("Modificar Libro\n");
+ */
 }
 
 
@@ -379,3 +418,164 @@ void empezarMenu(){ //Funcion para empezar el menu
 	gestionarSubmenus(seleccionarOpcionMenu());
 	}
 }
+
+void buscarPorAutor() {
+    system("cls");
+	printf("Autores disponibles:\n");
+
+	//mostrarAutores();
+
+	int autorSeleccionado;
+	printf("Escriba el codigo del autor que desea seleccionar: ");
+	scanf("%d", &autorSeleccionado);
+	fflush(stdout);
+
+	//seleccionarAutor(autorSeleccionado);
+
+	
+}
+
+void buscarPorTitulo() {
+	char titulo[100];
+	printf("Ingrese el título que desea buscar: ");
+	scanf("%s", titulo);
+	//buscarLibroPorTitulo(titulo);
+}
+
+void buscarPorCategoria() {
+/* 
+	// Connect to the database
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error opening database");
+		return;
+	}
+
+	// Prepare the SQL statement to retrieve the categories
+	sqlite3_stmt *stmt;
+	const char *sql = "SELECT id_cat, nombre_c FROM categoria";
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the categories
+	printf("Categorías disponibles:\n");
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		int codigo = sqlite3_column_int(stmt, 0);
+		const unsigned char *nombre = sqlite3_column_text(stmt, 1);
+		printf("Código: %d, Nombre: %s\n", codigo, nombre);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt);
+
+	// Prompt the user to enter a category code
+	int selectedCodigo;
+	printf("Ingrese el código de la categoría que desea ver: ");
+	scanf("%d", &selectedCodigo);
+
+	// Preparar el statement SQL para recuperar los libros de la categoría seleccionada
+	sqlite3_stmt *stmt2;
+	const char *sql2 = "SELECT * FROM libro WHERE id_cat = ?";
+	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+
+	result = sqlite3_bind_int(stmt2, 1, selectedCodigo);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error binding parameter");
+		sqlite3_finalize(stmt2);
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the books
+	printf("Libros de la categoría con código %d:\n", selectedCodigo);
+	while (sqlite3_step(stmt2) == SQLITE_ROW) {
+		int bookId = sqlite3_column_int(stmt2, 0);
+		const unsigned char *bookTitle = sqlite3_column_text(stmt2, 1);
+		printf("Código: %d, Título: %s\n", bookId, bookTitle);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt2);
+	sqlite3_close(db); */
+}
+
+void buscarPorEditorial() {
+	/* // Connect to the database
+	sqlite3 *db;
+	int result = sqlite3_open("biblioteca.db", &db);
+
+	// Prepare the SQL statement to retrieve the editorials
+	sqlite3_stmt *stmt;
+	const char *sql = "SELECT id_edi, nombre_e FROM editorial";
+	result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the editorials
+	printf("Editoriales disponibles:\n");
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		int codigo = sqlite3_column_int(stmt, 0);
+		const unsigned char *nombre = sqlite3_column_text(stmt, 1);
+		printf("Código: %d, Nombre: %s\n", codigo, nombre);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt);
+
+	// Prompt the user to enter an editorial code
+	int selectedCodigo;
+	printf("Ingrese el código de la editorial que desea ver: ");
+	scanf("%d", &selectedCodigo);
+
+	// Prepare the SQL statement to retrieve the books from the selected editorial
+	sqlite3_stmt *stmt2;
+	const char *sql2 = "SELECT * FROM libro WHERE id_edi = ?";
+	result = sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt2, NULL);
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error preparing statement");
+		sqlite3_close(db);
+		return;
+	}
+
+	result = sqlite3_bind_int(stmt2, 1, selectedCodigo);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameter: %s\n", sqlite3_errmsg(db));
+		guardarErrorEnLog("Error binding parameter");
+		sqlite3_finalize(stmt2);
+		sqlite3_close(db);
+		return;
+	}
+
+	// Execute the statement and retrieve the books
+	printf("Libros de la editorial con código %d:\n", selectedCodigo);
+	while (sqlite3_step(stmt2) == SQLITE_ROW) {
+		int bookId = sqlite3_column_int(stmt2, 0);
+		const unsigned char *bookTitle = sqlite3_column_text(stmt2, 1);
+		printf("Código: %d, Título: %s\n", bookId, bookTitle);
+	}
+
+	// Clean up
+	sqlite3_finalize(stmt2);
+	sqlite3_close(db); */
+}
+
