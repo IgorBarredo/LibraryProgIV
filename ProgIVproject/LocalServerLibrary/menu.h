@@ -4,7 +4,7 @@
 
 void imprimirMenuPrincipal();
 void gestionarSubmenus(int n);
-int seleccionarOpcionMenu();
+int seleccionarOpcionMenus();
 
 void MenuDescargar();
 void MenuSubir();

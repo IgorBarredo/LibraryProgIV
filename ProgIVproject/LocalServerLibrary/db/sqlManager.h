@@ -1,5 +1,5 @@
-#ifndef sqlManager_h
-#define sqlManager_h
+#ifndef SQL_MANAGER_H
+#define SQL_MANAGER_H
 
 #include "sqlite3.h"
 #include "../include/autor.h"
@@ -9,14 +9,15 @@
 
 sqlite3* abrirDB();
 void cerrarDB(sqlite3 *db);
+
 void insertarAutor(Autor objAutor);
 void insertarCategoria(Categoria objCategoria);
 void insertarEditorial(Editorial objEditorial);
 
 void mostrarAutores();
 void seleccionarAutor(int seleccion);
+
 void buscarLibroPorTitulo(char *titulo);
-
-
-
+void buscarLibroPorCategoria();
+void buscarLibroPorEditorial();
 #endif

@@ -1,22 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "include/autor.h"
-#include "include/categoria.h"
-#include "include/editorial.h"
-#include "sqlite3.h"
+#include "sqlManager.h"
+#include "../include/autor.h" 
+#include "../include/categoria.h"
+#include "../include/editorial.h"
+#include "../gestorDeArchivos/gestorDeArchivos.h"
+
+
 
 sqlite3* abrirDB() {
     sqlite3 *db;
     int result = sqlite3_open("biblioteca.db", &db);
     if (result != SQLITE_OK) {
-        printf("Error opening database\n");
+        printf("Error al abrir BD\n");
         return NULL;
-    }
+    } else(printf("BD abierta\n"));
     return db;
 }
+
 void cerrarDB(sqlite3 *db) {
-    sqlite3_close(db);
+    int resultado = sqlite3_close(db);
+if (resultado != SQLITE_OK) {
+	printf("No se pudo cerrar la base de datos, código de error: %d\n", resultado);
+} else {
+    printf("BD cerrada correctamente.\n");
+}
 }
 
 
@@ -264,7 +273,7 @@ void buscarLibroPorTitulo(char *titulo) {
 }
 	
 	
-void buscarPorCategoria(){
+void buscarLibroPorCategoria(){
 		// Connect to the database
 	sqlite3 *db = abrirDB();
 	int result;
@@ -330,7 +339,7 @@ void buscarPorCategoria(){
 	sqlite3_close(db);
 }
 
-void buscarPorEditorial() {
+void buscarLibroPorEditorial() {
 	// Connect to the database
 	sqlite3 *db;
 	int result = sqlite3_open("biblioteca.db", &db);

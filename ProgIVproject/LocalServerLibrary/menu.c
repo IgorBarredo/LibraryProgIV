@@ -1,6 +1,7 @@
 #include "menu.h"
 #include <stdio.h> 
 #include <stdlib.h>
+#include "db/sqlManager.h"
 #include "include/autor.c"
 #include "include/autor.h"
 #include "include/categoria.c"
@@ -9,6 +10,9 @@
 #include "include/editorial.h"
 #include "include/libro.c"
 #include "include/libro.h"
+
+
+
 
 
 void imprimirMenuPrincipal(){ 		//Funcion para imprimir el menu principal
@@ -21,7 +25,7 @@ printf(
 		"#//////////////////////////#\n" 
 		"############################\n" 
 		"#                          #\n" 
-		"#  1. Descargar Libro      #\n" 
+	 	"#  1. Descargar Libro      #\n" 
 		"#  2. Subir Libro          #\n" 
 		"#  3. Modificar Libro      #\n" 
 		"#  4. Registrar Autor      #\n" 
@@ -35,7 +39,7 @@ printf(
 	);
 }
 
-int seleccionarOpcionMenu() { //Funcion para seleccionar una opcion del menu
+int seleccionarOpcionMenus() { //Funcion para seleccionar una opcion del menu
 	int input;
 	scanf("%d", &input);
 	fflush(stdin);
@@ -77,6 +81,10 @@ void gestionarSubmenus(int n) { //Funcion para gestionar los submenus
 		printf("Saliendo...\n");
 		  exit(0);
 		  break;
+		  
+		case 8:
+		cerrarDB(abrirDB());
+		break;
 
 	    default:
 			
@@ -85,7 +93,9 @@ void gestionarSubmenus(int n) { //Funcion para gestionar los submenus
 				"#   INSERTE VALOR VALIDO   #\n"  
 				"############################\n"
 			);
+			
 			sleep(1);
+			
 			
 	}
 
@@ -189,7 +199,7 @@ char contenido[5000];
 	system("cls");
 	
 
-	Libro* objLibro;
+	//Libro* objLibro;
 
 	//crear_libro(isbn, titulo, fecha, contenido);
 
@@ -415,7 +425,7 @@ void empezarMenu(){ //Funcion para empezar el menu
 	sleep(1);
 	system("cls");
     imprimirMenuPrincipal();
-	gestionarSubmenus(seleccionarOpcionMenu());
+	gestionarSubmenus(seleccionarOpcionMenus());
 	}
 }
 
