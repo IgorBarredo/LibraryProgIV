@@ -1,7 +1,7 @@
 #include "menu.h"
 #include <stdio.h> 
 #include <stdlib.h>
-#include "db/sqlManager.h"
+
 #include "include/autor.c"
 #include "include/autor.h"
 #include "include/categoria.c"
@@ -10,7 +10,7 @@
 #include "include/editorial.h"
 #include "include/libro.c"
 #include "include/libro.h"
-
+#include "db/sqlManager.h"
 
 
 
